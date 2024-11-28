@@ -5,7 +5,7 @@ import "./App.css";
 
 import { Button } from "primereact/button";
 import PlaylistsView from "./playlists/components/PlaylistsView";
-
+import AppButton from "./common/components/AppButton";
 
 function App() {
   const [count, setCount] = useState(110);
@@ -13,20 +13,9 @@ function App() {
   return (
     <>
       <div className="container my-5">
-        .borderprim
-        <Button
-          className="float-end"
-          pt={{
-            root: {
-              className: "bg-primary-400 border-primary-500 hover:bg-primary-300",
-            },
-          }}
-        >
-          Login
-        </Button>
+        <AppButton primary className="float-end">Login</AppButton>
         <h1 className="text-3xl font-bold ">MusicApp</h1>
         <PlaylistsView />
-        <div style={{ border: "1px solid", accentColor: "" }}></div>
       </div>
     </>
   );
