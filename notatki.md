@@ -19,3 +19,13 @@ F1 -> Clone => PASTE ^ => Clone from URL -> Select location -> Open
 
 # FUnctional 
 https://learnyouahaskell.github.io/chapters.html
+
+
+# UI Toolkits
+https://js.devexpress.com/React/Documentation/Guide/UI_Components/Accordion/Demos/
+https://getbootstrap.com/
+https://react-bootstrap.netlify.app/docs/components/accordion
+
+https://primereact.org/installation/
+https://tailwindcss.com/
+https://headlessui.com/v1/react/menu
