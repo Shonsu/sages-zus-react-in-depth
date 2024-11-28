@@ -1,27 +1,23 @@
-import React, { type ChangeEvent } from "react";
+import React, { useState, type ChangeEvent } from "react";
 import AppButton from "../../common/components/AppButton";
 
 type Props = {};
 
+const playlistData = {
+  id: 123,
+  name: "Playlist 123",
+  public: true,
+  description: "Best playlist",
+};
+
 const PlaylistEditor = (props: Props) => {
-  const playlist = {
-    id: 123,
-    name: "Playlist 123",
-    public: true,
-    description: "Best playlist",
+
+  const [playlist, setPlaylist] = useState(playlistData)
+
+  const handler = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    playlist.name = event.target.value;
+    setPlaylist(playlist)
   };
-
-  // const handleChange = (event: ??) => {
-  // const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-  // const handleChange = (event: ChangeEvent<HTMLInputElement >) => {
-  // const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-
-  // const handleChange = (event: "left shoe") => {
-  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   event.target;
-  // };
-  
-  const handler = (event: React.ChangeEvent<HTMLInputElement>): void => {};
 
   return (
     <div>
