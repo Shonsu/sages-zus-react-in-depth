@@ -36,3 +36,23 @@ https://mui.com/
 
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
+
+# update
+cd vite-project
+npm i 
+npm run dev
+
+
+# Playlists
+
+mkdir -p /src/common/components
+
+mkdir -p /src/playlists/components
+mkdir -p /src/playlists/containers
+
+touch /src/playlists/components/PlaylistsView.tsx
+
+touch /src/playlists/containers/PlaylistDetails.tsx
+touch /src/playlists/containers/PlaylistList.tsx
+touch /src/playlists/containers/PlaylistEditor.tsx
+
