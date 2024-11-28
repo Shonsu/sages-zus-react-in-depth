@@ -68,6 +68,12 @@ const UserProfile = ({ user }: { user: User }) => {
   );
 };
 
-const UserList = ({}: { users: User[] }) => React.createElement("div", {}, "");
+const UserList = ({ users }: { users: User[] }) =>
+  React.createElement(
+    "ul",
+    {},
+    users.map((user) => React.createElement("li", {}, UserProfile({ user })))
+  );
 
-root.render(UserProfile({ user: users[1] }));
+// root.render(UserList({ users: users }));
+root.render(UserList({ users }));
