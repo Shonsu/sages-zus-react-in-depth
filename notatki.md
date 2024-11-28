@@ -57,6 +57,8 @@ touch ./src/playlists/containers/PlaylistList.tsx
 touch ./src/playlists/containers/PlaylistEditor.tsx
 
 # CSS Dinner
+https://flukeout.github.io/
+
 Emmet Cheat Sheet
 Tailwind Cheat Sheet
 CSS Dinner
