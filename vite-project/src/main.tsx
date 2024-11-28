@@ -50,7 +50,7 @@ const users: User[] = [
   },
 ];
 
-const vdiv = ({ user }: { user: User }) => {
+const UserProfile = ({ user }: { user: User }) => {
   return React.createElement(
     "div",
     {
@@ -68,4 +68,6 @@ const vdiv = ({ user }: { user: User }) => {
   );
 };
 
-root.render(vdiv({ user: users[1] }));
+const UserList = ({}: { users: User[] }) => React.createElement("div", {}, "");
+
+root.render(UserProfile({ user: users[1] }));
