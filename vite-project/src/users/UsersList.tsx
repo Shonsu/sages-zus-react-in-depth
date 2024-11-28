@@ -8,11 +8,7 @@ export const UserList = ({ users }: { users: User[] }) => (
         // <li key={user.id}>{UserProfile({ user })}</li>
         // <li key={index}>
         <li key={user.id}>
-
-
-          // root.GDZIE_TERAZ_JESTEM = tu.. // DIRTY!
           <UserProfile user={user} />
-          // root.GDZIE_TERAZ_JESTEM = null
         </li>
       ))}
     </ul>
