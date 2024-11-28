@@ -11,18 +11,19 @@ const PlaylistEditor = (props: Props) => {
     description: "Best playlist",
   };
 
+  const handleChange = () => {}
+
   return (
     <div>
-      {/* .grid.gap-5>.grid.gap-2*3>label{Name}+input^.flex.justify-between>AppButton{Save} */}
       <div className="grid gap-5">
         <div className="grid gap-2">
           <label>Name</label>
-          <input type="text" defaultValue={playlist.name} />
+          <input type="text" defaultValue={playlist.name} onChange={handleChange} />
         </div>
 
         <div className="grid gap-2">
           <label>
-            <input type="checkbox" defaultChecked={playlist.public}/>
+            <input type="checkbox" defaultChecked={playlist.public} />
             Public
           </label>
         </div>
