@@ -21,12 +21,12 @@ window.ReactDOM = ReactDOM;
 const root = createRoot(document.getElementById("root")!);
 
 interface User {
-    id: string;
+  id: string;
+  name: string;
+  color: string;
+  pet: {
     name: string;
-    color: string;
-    pet: {
-        name: string;
-    };
+  };
 }
 
 const user: User = {
@@ -36,15 +36,8 @@ const user: User = {
   pet: { name: "Cat" },
 };
 
-const vdiv = (props:{
-  id: string;
-  name: string;
-  color: string;
-  pet: {
-    name: string;
-  };
-}) =>
-  React.createElement(
+const vdiv = (props: { user: User }) =>{
+  return React.createElement(
     "div",
     {
       id: user.id,
@@ -58,9 +51,9 @@ const vdiv = (props:{
       },
       `${user.name} has a ${user.pet.name}`
     )
-  );
+  );}
 
-root.render(vdiv);
+root.render(vdiv({user}));
 
 // ReactDOM.render(vdiv, root)
 
