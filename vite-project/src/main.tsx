@@ -10,7 +10,7 @@ window.React = React;
 window.ReactDOM = ReactDOM;
 
 import "./index.css";
-// import "primereact/resources/themes/lara-light-cyan/theme.css";
+import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
