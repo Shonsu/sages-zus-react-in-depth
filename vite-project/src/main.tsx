@@ -58,8 +58,6 @@ const UserProfile = ({ user }: { user: User }) => (
   </div>
 );
 
-debugger
-
 const UserProfile2 = ({ user }: { user: User }) => {
   return React.createElement(
     "div",
@@ -80,7 +78,19 @@ const UserProfile2 = ({ user }: { user: User }) => {
   );
 };
 
-const UserList = ({ users }: { users: User[] }) =>
+const UserList = ({ users }: { users: User[] }) => (
+  <div>
+    <ul>
+      {users.map((user) => (
+        // <li key={user.id}>{UserProfile({ user })}</li>
+        <li key={user.id}>
+          <UserProfile user={user}/>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+const UserList2 = ({ users }: { users: User[] }) =>
   React.createElement(
     "ul",
     {},
