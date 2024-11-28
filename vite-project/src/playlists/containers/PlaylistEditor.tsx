@@ -1,13 +1,43 @@
+import React from "react";
+import AppButton from "../../common/components/AppButton";
 
-
-import React from 'react'
-
-type Props = {}
+type Props = {};
 
 const PlaylistEditor = (props: Props) => {
-  return (
-    <div>PlaylistEditor</div>
-  )
-}
+  const playlist = {
+    id: 123,
+    name: "Playlist 123",
+    public: true,
+    description: "Best playlist",
+  };
 
-export default PlaylistEditor
+  return (
+    <div>
+      {/* .grid.gap-5>.grid.gap-2*3>label{Name}+input^.flex.justify-between>AppButton{Save} */}
+      <div className="grid gap-5">
+        <div className="grid gap-2">
+          <label>Name</label>
+          <input type="text" />
+        </div>
+
+        <div className="grid gap-2">
+          <label>
+            <input type="checkbox" />
+            Public
+          </label>
+        </div>
+
+        <div className="grid gap-2">
+          <label>Description</label>
+          <textarea></textarea>
+        </div>
+
+        <div className="flex justify-between">
+          <AppButton>Save</AppButton>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PlaylistEditor;

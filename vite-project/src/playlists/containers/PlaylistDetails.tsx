@@ -28,13 +28,6 @@ const PlaylistDetails = (props: Props) => {
           <div style={{ color: playlist.public ? "red" : "green" }}>
             {playlist.public ? "Yes" : <span>No</span>}
           </div>
-
-          {playlist.public && <div style={{ color: "green" }}>No</div>}
-
-          {!playlist.public && <div style={{ color: "green" }}>No</div>}
-          
-          {playlist.public || <div style={{ color: "red" }}>Yes</div>}
-          
         </div>
 
         <div className="grid gap-2">
