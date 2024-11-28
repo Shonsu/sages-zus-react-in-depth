@@ -18,18 +18,31 @@ window.ReactDOM = ReactDOM;
 //   </StrictMode>,
 // )
 
-const root = createRoot(document.getElementById('root')!)
+const root = createRoot(document.getElementById("root")!);
 
-const vdiv = React.createElement('div', { id:'123',title:'test'},
-    React.createElement('p',{ 
-        style: { color:'yellow' }, 
-        className:'placki'
-    },'ALice ma kota'),
-    React.createElement('input',{ key:'pamietaj o mnie' }),
-    'placki',
-)
+const user = {
+  id: "123",
+  name: "Alice",
+  color: "red",
+  pet: { name: "Cat" },
+};
 
-root.render(vdiv)
+const vdiv = React.createElement(
+  "div",
+  { id: user.id, title: user.name },
+  React.createElement(
+    "p",
+    {
+      style: { color: user.color },
+      className: "placki",
+    },
+    `${user.name} has a ${user.pet.name}`
+  ),
+  React.createElement("input", { key: "123" }),
+  "placki"
+);
+
+root.render(vdiv);
 
 // ReactDOM.render(vdiv, root)
 
@@ -38,7 +51,7 @@ root.render(vdiv)
 // p.innerText = 'Ala ma kota'
 // div.append(p)
 // root  = document.getElementById('root')
-// root.append(div) 
+// root.append(div)
 
 // user = '<h1> Ala <script> <img> '
 // div.innerHTML = `<div> <p>${user} ma <b>kota<b></p> <input></div>`
