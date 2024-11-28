@@ -29,6 +29,8 @@ interface User {
   };
 }
 
+// nazwa : Typ = wartosc
+
 const user: User = {
   id: "123",
   name: "Alice",
