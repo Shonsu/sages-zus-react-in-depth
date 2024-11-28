@@ -29,8 +29,6 @@ interface User {
   };
 }
 
-// nazwa : Typ = wartosc
-
 const user: User = {
   id: "123",
   name: "Alice",
@@ -38,7 +36,14 @@ const user: User = {
   pet: { name: "Cat" },
 };
 
-const vdiv = (props: { user: User }) =>{
+// const vdiv = (props: { user: User, x?:boolean }) => {
+//   const user = props.user;
+//   const { user, x } = props;
+
+// const vdiv = ({user: userAlias }: { user: User }) => {
+
+const vdiv = ({user}: { user: User }) => {
+
   return React.createElement(
     "div",
     {
@@ -53,18 +58,7 @@ const vdiv = (props: { user: User }) =>{
       },
       `${user.name} has a ${user.pet.name}`
     )
-  );}
+  );
+};
 
-root.render(vdiv({user}));
-
-// ReactDOM.render(vdiv, root)
-
-// div = document.createElement('div')
-// p = document.createElement('p')
-// p.innerText = 'Ala ma kota'
-// div.append(p)
-// root  = document.getElementById('root')
-// root.append(div)
-
-// user = '<h1> Ala <script> <img> '
-// div.innerHTML = `<div> <p>${user} ma <b>kota<b></p> <input></div>`
+root.render(vdiv({ user }));
