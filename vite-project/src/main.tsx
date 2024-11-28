@@ -24,7 +24,7 @@ interface User {
   id: string;
   name: string;
   color: string;
-  pet: {
+  pet?: {
     name: string;
   };
 }
@@ -40,7 +40,7 @@ const users: User[] = [
     id: "234",
     name: "Bob",
     color: "yello",
-    pet: { name: "Dog" },
+    // pet: { name: "Dog" },
   },
   {
     id: "345",
@@ -63,7 +63,9 @@ const UserProfile = ({ user }: { user: User }) => {
       {
         style: { color: user.color },
       },
-      `${user.name} has a ${user.pet.name}`
+      user.pet
+        ? `${user.name} has a ${user.pet.name}`
+        : `${user.name} has no pet`
     )
   );
 };
