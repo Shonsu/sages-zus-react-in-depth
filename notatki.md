@@ -32,3 +32,7 @@ https://headlessui.com/v1/react/menu
 
 https://mui.com/
 
+# Tailwind
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
