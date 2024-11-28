@@ -16,9 +16,9 @@ type Props = {
   primary?: boolean;
 } & ButtonProps;
 
-const AppButton = (props: Props) => {
+const AppButton = ({ primary, ...props }: Props) => {
   return (
-    <Button {...props} pt={props.primary ? PrimaryButtonPT : {}}>
+    <Button {...props} pt={primary ? PrimaryButtonPT : {}}>
       Login
     </Button>
   );
