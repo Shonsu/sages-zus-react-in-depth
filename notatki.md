@@ -45,14 +45,14 @@ npm run dev
 
 # Playlists
 
-mkdir -p /src/common/components
+mkdir -p ./src/common/components
 
-mkdir -p /src/playlists/components
-mkdir -p /src/playlists/containers
+mkdir -p ./src/playlists/components
+mkdir -p ./src/playlists/containers
 
-touch /src/playlists/components/PlaylistsView.tsx
+touch ./src/playlists/components/PlaylistsView.tsx
 
-touch /src/playlists/containers/PlaylistDetails.tsx
-touch /src/playlists/containers/PlaylistList.tsx
-touch /src/playlists/containers/PlaylistEditor.tsx
+touch ./src/playlists/containers/PlaylistDetails.tsx
+touch ./src/playlists/containers/PlaylistList.tsx
+touch ./src/playlists/containers/PlaylistEditor.tsx
 
