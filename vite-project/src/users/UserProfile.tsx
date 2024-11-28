@@ -3,6 +3,10 @@ import type { User } from "./User";
 
 export const UserProfile = ({ user }: { user: User }) => {
   const [counter, setCounter] = useState(0);
+  // root.GDZIE_TERAZ_JESTEM.hooks[0].value
+  // root.GDZIE_TERAZ_JESTEM.hooks[1].value
+  // root.GDZIE_TERAZ_JESTEM.hooks[2].value
+  window.setCounter = setCounter
 
   return (
     <div className="user-profile" id={"user_" + user.id} title={user.name}>
