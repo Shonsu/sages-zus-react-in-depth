@@ -17,19 +17,19 @@ const PlaylistEditor = (props: Props) => {
       <div className="grid gap-5">
         <div className="grid gap-2">
           <label>Name</label>
-          <input type="text" />
+          <input type="text" defaultValue={playlist.name} />
         </div>
 
         <div className="grid gap-2">
           <label>
-            <input type="checkbox" />
+            <input type="checkbox" defaultChecked={playlist.public}/>
             Public
           </label>
         </div>
 
         <div className="grid gap-2">
           <label>Description</label>
-          <textarea></textarea>
+          <textarea defaultValue={playlist.description}></textarea>
         </div>
 
         <div className="flex justify-between">
