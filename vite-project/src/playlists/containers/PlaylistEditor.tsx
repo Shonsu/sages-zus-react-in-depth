@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ChangeEvent } from "react";
 import AppButton from "../../common/components/AppButton";
 
 type Props = {};
@@ -11,14 +11,24 @@ const PlaylistEditor = (props: Props) => {
     description: "Best playlist",
   };
 
-  const handleChange = () => {}
+  // const handleChange = (event: ??) => {
+  // const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  // const handleChange = (event: ChangeEvent<HTMLInputElement >) => {
+  // const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+
+  // const handleChange = (event: "left shoe") => {
+  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   event.target;
+  // };
+  
+  const handler = (event: React.ChangeEvent<HTMLInputElement>): void => {};
 
   return (
     <div>
       <div className="grid gap-5">
         <div className="grid gap-2">
           <label>Name</label>
-          <input type="text" defaultValue={playlist.name} onChange={handleChange} />
+          <input type="text" defaultValue={playlist.name} onChange={handler} />
         </div>
 
         <div className="grid gap-2">
