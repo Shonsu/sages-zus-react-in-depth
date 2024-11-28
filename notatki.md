@@ -15,3 +15,7 @@ visual studio code
 git clone https://bitbucket.org/ev45ive/sages-zus-react-in-depth.git
 
 F1 -> Clone => PASTE ^ => Clone from URL -> Select location -> Open
+
+
+# FUnctional 
+https://learnyouahaskell.github.io/chapters.html

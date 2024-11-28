@@ -74,7 +74,15 @@ const UserList = ({ users }: { users: User[] }) =>
   React.createElement(
     "ul",
     {},
-    users.map((user) => React.createElement("li", {}, UserProfile({ user })))
+    users.map((user) =>
+      React.createElement(
+        "li",
+        {
+          key: user.id,
+        },
+        UserProfile({ user })
+      )
+    )
   );
 
 // root.render(UserList({ users: users }));
