@@ -10,6 +10,7 @@ const PlaylistsView = (props: Props) => {
     <div>
 
         {/* .grid.grid-cols-2.gap-5>div*2   */} {/* Ctrl+Space ..select.. Enter */}
+        
         <div className="grid grid-cols-2 gap-5">
           <div>
             <PlaylistList/>

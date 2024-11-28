@@ -56,3 +56,7 @@ touch ./src/playlists/containers/PlaylistDetails.tsx
 touch ./src/playlists/containers/PlaylistList.tsx
 touch ./src/playlists/containers/PlaylistEditor.tsx
 
+# CSS Dinner
+Emmet Cheat Sheet
+Tailwind Cheat Sheet
+CSS Dinner
