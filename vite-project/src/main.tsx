@@ -18,8 +18,6 @@ window.ReactDOM = ReactDOM;
 //   </StrictMode>,
 // )
 
-const root = createRoot(document.getElementById("root")!);
-
 interface User {
   id: string;
   name: string;
@@ -80,10 +78,12 @@ const UserList = ({ users }: { users: User[] }) =>
         {
           key: user.id,
         },
-        UserProfile({ user })
+        // UserProfile({ user }) // call before render, send result
+        React.createElement(UserProfile, { user }) // send Function, call it later
       )
     )
   );
 
-// root.render(UserList({ users: users }));
+const root = createRoot(document.getElementById("root")!);
+
 root.render(UserList({ users }));
