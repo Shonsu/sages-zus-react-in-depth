@@ -20,27 +20,45 @@ window.ReactDOM = ReactDOM;
 
 const root = createRoot(document.getElementById("root")!);
 
-const user = {
+interface User {
+    id: string;
+    name: string;
+    color: string;
+    pet: {
+        name: string;
+    };
+}
+
+const user: User = {
   id: "123",
   name: "Alice",
   color: "red",
   pet: { name: "Cat" },
 };
 
-const vdiv = React.createElement(
-  "div",
-  { id: user.id, title: user.name },
+const vdiv = (props:{
+  id: string;
+  name: string;
+  color: string;
+  pet: {
+    name: string;
+  };
+}) =>
   React.createElement(
-    "p",
+    "div",
     {
-      style: { color: user.color },
-      className: "placki",
+      id: user.id,
+      title: user.name,
+      className: "user-profile",
     },
-    `${user.name} has a ${user.pet.name}`
-  ),
-  React.createElement("input", { key: "123" }),
-  "placki"
-);
+    React.createElement(
+      "p",
+      {
+        style: { color: user.color },
+      },
+      `${user.name} has a ${user.pet.name}`
+    )
+  );
 
 root.render(vdiv);
 
