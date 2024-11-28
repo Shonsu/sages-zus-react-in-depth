@@ -11,12 +11,13 @@ const playlistData = {
 };
 
 const PlaylistEditor = (props: Props) => {
-
-  const [playlist, setPlaylist] = useState(playlistData)
+  const [playlist, setPlaylist] = useState(playlistData);
 
   const handler = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    playlist.name = event.target.value;
-    setPlaylist(playlist)
+    const playlistCopy = { ...playlist };
+    // const playlistCopy = playlist;
+    playlistCopy.name = event.target.value;
+    setPlaylist(playlistCopy);
   };
 
   return (
@@ -24,7 +25,9 @@ const PlaylistEditor = (props: Props) => {
       <div className="grid gap-5">
         <div className="grid gap-2">
           <label>Name</label>
-          <input type="text" defaultValue={playlist.name} onChange={handler} />
+          <input type="text" value={playlist.name} onChange={handler} />
+
+          <div className="text-end">{playlist.name.length} / 100</div>
         </div>
 
         <div className="grid gap-2">
