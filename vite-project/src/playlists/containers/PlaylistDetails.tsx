@@ -5,15 +5,16 @@ import React from "react";
 import type { Playlist } from "./Playlist";
 
 type Props = {
-  playlist: Playlist;
+  playlist?: Playlist;
   onEdit: () => void;
 };
 
 const PlaylistDetails = ({ onEdit, playlist }: Props) => {
+  // Guard Function / Early return  
+  if (!playlist) return <p>No playlist selected</p>;
+
   return (
     <div>
-      {true} {false} {null} {undefined}
-      {/* .grid.gap-5>.grid.gap-2*3>strong{Name}+div{Playlist $$$} */}
       <div className="grid gap-5">
         <div className="grid gap-2">
           <strong>Name</strong>

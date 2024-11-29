@@ -18,30 +18,13 @@ const PlaylistsView = (props: Props) => {
   );
 
   const [selectedId, setSelectedId] = useState<Playlist["id"]>("123");
-  const [selected, setSelected] = useState(playlists[0]);
+  // const [selected, setSelected] = useState<Playlist | undefined>(playlists[0]);
+  // const [selected, setSelected] = useState<Playlist>(undefined);
+  const [selected, setSelected] = useState<Playlist>();
 
   const selectById = (id: Playlist["id"]) => {
     setSelectedId(id);
-
-    // const found = playlists.find((p) => p.id === id) as any
-    // const found = playlists.find((p) => p.id === id) as Playlist
-    // const found = {} as Playlist
-    // const found = 123 as unknown as Playlist
-    // const found = playlists.find((p) => p.id === id)!
-
-    const found = playlists.find((p) => p.id === id);
-
-    if (typeof found === "object") {
-      found; // Playlist
-    } else if (found === undefined) {
-      found; // undefined
-    } else {
-      found; // never
-      // const _never: never = found;
-      // Exhaustiveness check 
-      found satisfies never;
-      throw new Error("Invalid server response");
-    }
+    setSelected(playlists.find((p) => p.id === id))
   };
 
   const savePlaylist = (draft: Playlist) => {
@@ -72,11 +55,10 @@ const PlaylistsView = (props: Props) => {
           {/* <input type="text" placki={selected.name} /> */}
         </div>
         <div>
-          {selected.name}
-          {mode === "details" && (
+          {mode === "details"  && (
             <PlaylistDetails playlist={selected} onEdit={showEditor} />
           )}
-          {mode === "editor" && (
+          {mode === "editor" && selected && (
             <PlaylistEditor
               playlist={selected}
               onCancel={showDetails}
