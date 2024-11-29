@@ -20,6 +20,7 @@ const PlaylistsView = (props: Props) => {
   const selectById = (id: Playlist["id"]) => {
     setSelectedId(id);
     setSelected(playlists.find((p) => p.id === id));
+    showDetails()
   };
 
   const createPlaylist = (draft: Playlist) => {
@@ -27,8 +28,10 @@ const PlaylistsView = (props: Props) => {
 
     setPlaylists([...playlists, draft]);
     setMode("details");
-    setSelected(draft);
-    setSelectedId(draft.id);
+
+    selectById(draft.id)
+    // setSelectedId(draft.id);
+    // setSelected(draft);
   };
 
   const savePlaylist = (draft: Playlist) => {
