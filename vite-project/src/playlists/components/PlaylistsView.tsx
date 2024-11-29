@@ -41,23 +41,9 @@ const PlaylistsView = (props: Props) => {
     setSelectedId("");
   };
 
-  // Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
-  // setSelected(playlists.find((p) => p.id === selectedId));
-
   useEffect(() => {
-    console.log("render effect");
-  });
-
-  useEffect(() => {
-    console.log("render effect + deps "); // y = 2x + b
     setSelected(playlists.find((p) => p.id === selectedId));
   }, [selectedId, playlists]);
-
-  useEffect(() => {
-    console.log("effect only once");
-  },[/* 'placki' */]);
-
-  console.log("render");
 
   return (
     <div>

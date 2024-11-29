@@ -24,6 +24,8 @@ const PlaylistEditor = ({
     onSave(playlist);
   };
 
+  document.getElementById('playlist_name')?.focus()
+
   return (
     <div>
       <pre>{JSON.stringify(playlist, null, 2)}</pre>
@@ -31,6 +33,7 @@ const PlaylistEditor = ({
         <div className="grid gap-2">
           <label>Name</label>
           <input
+            id="playlist_name"
             type="text"
             value={playlist.name}
             onChange={nameChange}
