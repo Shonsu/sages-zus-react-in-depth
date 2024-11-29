@@ -6,10 +6,7 @@ import { Button } from "primereact/button";
 import { mockPlaylists } from "../containers/mockPlaylists";
 import type { Playlist } from "../containers/Playlist";
 
-const appendPlaylist =
-  (draft: Playlist) =>
-  (nextPlaylists: Playlist[]): Playlist[] =>
-    [...nextPlaylists, draft];
+const appendItem = <T,>(x: T) => (xs: T[]): T[] => [...xs, x];
 
 type Props = {};
 type Mode = "details" | "editor" | "creator";
@@ -31,7 +28,7 @@ const PlaylistsView = (props: Props) => {
   const createPlaylist = (draft: Playlist) => {
     draft.id = crypto.randomUUID();
 
-    setPlaylists(appendPlaylist(draft));
+    setPlaylists(appendItem(draft));
     setSelectedId(draft.id);
     setSelected(draft);
   };
