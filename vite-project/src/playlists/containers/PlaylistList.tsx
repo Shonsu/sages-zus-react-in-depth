@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { mockPlaylists } from "./mockPlaylists";
+import type { Playlist } from "./Playlist";
 
 type Props = {};
 
 const PlaylistList = (props: Props) => {
-  const [selectedId, setSelectedId] = useState(234);
+  const [selectedId, setSelectedId] = useState<Playlist["id"]>();
 
-  const selectById = (id: number) => {
+  const playlist: Playlist[] = [];
+
+  const selectById = (id: Playlist["id"]) => {
     setSelectedId(id);
   };
 
@@ -15,7 +18,7 @@ const PlaylistList = (props: Props) => {
       {/* .divide-y.divide-slate-400.divide-solid>div*3.px-2.py-5{$. Playlist $$$} */}
 
       <div className="divide-y divide-slate-400 divide-solid">
-        {mockPlaylists.map((p, index, all) => (
+        {playlist.map((p, index, all) => (
           <div
             className={`px-2 py-5 ${
               selectedId == p.id ? "bg-primary-300 text-white" : ""

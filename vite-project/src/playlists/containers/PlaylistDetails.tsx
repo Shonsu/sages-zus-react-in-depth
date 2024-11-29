@@ -6,7 +6,7 @@ type Props = {};
 
 const PlaylistDetails = (props: Props) => {
   const playlist = {
-    id: 123,
+    id: '123',
     name: "Playlist 123",
     public: true,
     description: "Best playlist",

@@ -1,9 +1,4 @@
-interface Playlist {
-  id: number;
-  name: string;
-  public: boolean;
-  description: string;
-}
+import type { Playlist } from "./Playlist";
 
 interface PlaylistTracks extends Playlist {
   // name: number // error!
