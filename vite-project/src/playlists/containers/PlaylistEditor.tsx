@@ -12,11 +12,9 @@ const playlistData = {
 
 const PlaylistEditor = (props: Props) => {
   const [playlist, setPlaylist] = useState(playlistData);
-  const [playlistName, setPlaylistName] = useState("");
 
-  const handler = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const nameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setPlaylist({ ...playlist, name: event.target.value });
-    setPlaylistName(event.target.value);
   };
 
   const submit = () => {
@@ -25,10 +23,11 @@ const PlaylistEditor = (props: Props) => {
 
   return (
     <div>
+      <pre>{JSON.stringify(playlist, null, 2)}</pre>
       <div className="grid gap-5">
         <div className="grid gap-2">
           <label>Name</label>
-          <input type="text" value={playlist.name} onChange={handler} />
+          <input type="text" value={playlist.name} onChange={nameChange} />
 
           <div className="text-end">{playlist.name.length} / 100</div>
         </div>
