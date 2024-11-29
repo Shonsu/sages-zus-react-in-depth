@@ -58,7 +58,7 @@ const PlaylistsView = (props: Props) => {
           {mode === "details"  && (
             <PlaylistDetails playlist={selected} onEdit={showEditor} />
           )}
-          {mode === "editor" && selected && (
+          {mode === "editor" && (
             <PlaylistEditor
               playlist={selected}
               onCancel={showDetails}

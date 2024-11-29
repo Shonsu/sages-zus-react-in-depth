@@ -3,16 +3,22 @@ import AppButton from "../../common/components/AppButton";
 import type { Playlist } from "./Playlist";
 
 type Props = {
-  playlist: Playlist;
+  playlist?: Playlist;
   onCancel: () => void;
   onSave: (draft: Playlist) => void;
 };
+const EMPTY_PLAYLIST = { id: "", name: "", public: false, description: "" };
 
 const PlaylistEditor = ({
   onCancel,
   onSave,
-  playlist: playlistData,
+  playlist: playlistData = EMPTY_PLAYLIST,
 }: Props) => {
+ 
+  // playlistData = playlistData || EMPTY_PLAYLIST;
+  // playlistData = playlistData ?? EMPTY_PLAYLIST;
+  // playlistData ??= EMPTY_PLAYLIST;
+
   const [playlist, setPlaylist] = useState(playlistData);
 
   const nameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
