@@ -1,4 +1,21 @@
-export const mockPlaylists = [
+interface Playlist {
+  id: number;
+  name: string;
+  public: boolean;
+  description: string;
+}
+
+interface PlaylistTracks extends Playlist {
+  // name: number // error!
+  tracks?: any[];
+}
+
+type PlaylistWithTracks = Playlist & {
+  tracks?: any[];
+  // name: number; // string & string = never
+};
+
+export const mockPlaylists: Playlist[] = [
   {
     id: 123,
     name: "Playlist 123",

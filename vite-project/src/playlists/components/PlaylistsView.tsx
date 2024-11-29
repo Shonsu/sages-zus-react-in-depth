@@ -5,9 +5,10 @@ import PlaylistEditor from "../containers/PlaylistEditor";
 import { Button } from "primereact/button";
 
 type Props = {};
+type Mode = "details" | "editor";
 
 const PlaylistsView = (props: Props) => {
-  const [mode, setMode] = useState<"details" | "editor">("details");
+  const [mode, setMode] = useState<Mode>("details");
 
   return (
     <div>
