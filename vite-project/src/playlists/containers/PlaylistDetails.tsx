@@ -1,5 +1,6 @@
 // tsrafce
 
+import { Button } from "primereact/button";
 import React from "react";
 
 type Props = {};
@@ -34,6 +35,11 @@ const PlaylistDetails = (props: Props) => {
           <strong>Description</strong>
           <div>{playlist.description}</div>
         </div>
+
+<div className="flex content-between">
+        <Button onClick={() =>{}}>Edit</Button>
+</div>
+
       </div>
     </div>
   );

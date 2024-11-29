@@ -13,12 +13,20 @@ const PlaylistsView = (props: Props) => {
   const [mode, setMode] = useState<Mode>("details");
 
   const playlists = mockPlaylists;
-  const selected = playlists[0];
   const [selectedId, setSelectedId] = useState<Playlist["id"]>();
 
+  const [selected, setSelected] = useState(playlists[0]);
   const selectById = (id: Playlist["id"]) => {
     setSelectedId(id);
+    setSelected(playlists.find((p) => p.id === id)!);
   };
+
+  const savePlaylist = (draft: Playlist) => {
+    console.log("Saving", draft);
+  };
+
+  const showDetails = () => setMode("details");
+  const showEditor = () => setMode("editor");
 
   return (
     <div>
@@ -32,11 +40,9 @@ const PlaylistsView = (props: Props) => {
           {/* <input type="text" placki={selected.name} /> */}
         </div>
         <div>
+          {selected.name}
           {mode === "details" && <PlaylistDetails />}
           {mode === "editor" && <PlaylistEditor />}
-
-          <Button onClick={() => setMode("editor")}>Edit</Button>
-          <Button onClick={() => setMode("details")}>DEtails</Button>
         </div>
       </div>
     </div>

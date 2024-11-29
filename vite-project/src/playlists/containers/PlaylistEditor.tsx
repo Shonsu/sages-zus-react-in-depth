@@ -27,7 +27,12 @@ const PlaylistEditor = (props: Props) => {
       <div className="grid gap-5">
         <div className="grid gap-2">
           <label>Name</label>
-          <input type="text" value={playlist.name} onChange={nameChange} name="name" />
+          <input
+            type="text"
+            value={playlist.name}
+            onChange={nameChange}
+            name="name"
+          />
 
           <div className="text-end">{playlist.name.length} / 100</div>
         </div>
@@ -56,6 +61,7 @@ const PlaylistEditor = (props: Props) => {
         </div>
 
         <div className="flex justify-between">
+          <AppButton>Cancel</AppButton>
           <AppButton>Save</AppButton>
         </div>
       </div>
