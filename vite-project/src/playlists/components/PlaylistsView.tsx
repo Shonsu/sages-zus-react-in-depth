@@ -11,7 +11,7 @@ const PlaylistsView = (props: Props) => {
 
   return (
     <div>
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-2 gap-5 my-5">
         <div>
           <PlaylistList />
         </div>
