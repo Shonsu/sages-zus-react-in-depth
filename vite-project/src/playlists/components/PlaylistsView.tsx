@@ -46,8 +46,16 @@ const PlaylistsView = (props: Props) => {
 
   useEffect(() => {
     console.log("render effect");
-    setSelected(playlists.find((p) => p.id === selectedId));
   });
+
+  useEffect(() => {
+    console.log("render effect + deps "); // y = 2x + b
+    setSelected(playlists.find((p) => p.id === selectedId));
+  }, [selectedId, playlists]);
+
+  useEffect(() => {
+    console.log("effect only once");
+  },[/* 'placki' */]);
 
   console.log("render");
 

@@ -13,7 +13,7 @@ import "./index.css";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+  <StrictMode> {/* Strict useEffect! */}
     <PrimeReactProvider>
       <App />
     </PrimeReactProvider>
