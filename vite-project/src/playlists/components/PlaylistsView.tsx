@@ -22,15 +22,30 @@ const PlaylistsView = (props: Props) => {
     setSelectedId(id);
   };
 
+  useEffect(() => {
+    const huston = new AbortController();
+
+    fetch("playlists.json", { signal: huston.signal })
+      .then((r) => r.json())
+      .then((data: Playlist[]) => {
+        // console.log("data", data);
+        setPlaylists(data);
+        setSelected(data.find((p) => p.id === selectedId));
+      });
+
+    return () => {
+      huston.abort('Bo tak');
+    };
+  }, []);
 
   useEffect(() => {
     const handler = setTimeout(() => {
       setSelected(playlists.find((p) => p.id === selectedId));
-    }, 2000);
+    }, 1000);
 
     return () => {
       clearTimeout(handler);
-    }
+    };
   }, [selectedId, playlists]);
 
   const createPlaylist = (draft: Playlist) => {
