@@ -1,4 +1,4 @@
-import React, { useEffect, useState, type ChangeEvent } from "react";
+import React, { useEffect, useId, useState, type ChangeEvent } from "react";
 import AppButton from "../../common/components/AppButton";
 import type { Playlist } from "./Playlist";
 
@@ -24,8 +24,10 @@ const PlaylistEditor = ({
     onSave(playlist);
   };
 
+  const uuid = useId(); // :r1:playlist_name
+
   useEffect(() => {
-    document.getElementById("playlist_name")?.focus();
+    document.getElementById(uuid + "playlist_name")?.focus();
   }, []);
 
   return (
@@ -35,7 +37,7 @@ const PlaylistEditor = ({
         <div className="grid gap-2">
           <label>Name</label>
           <input
-            id="playlist_name"
+            id={uuid + "playlist_name"}
             type="text"
             value={playlist.name}
             onChange={nameChange}
