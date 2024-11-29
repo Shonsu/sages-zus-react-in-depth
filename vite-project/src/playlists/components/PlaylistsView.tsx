@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PlaylistList from "../containers/PlaylistList";
 import PlaylistDetails from "../containers/PlaylistDetails";
 import PlaylistEditor from "../containers/PlaylistEditor";
@@ -20,7 +20,6 @@ const PlaylistsView = (props: Props) => {
 
   const selectById = (id: Playlist["id"]) => {
     setSelectedId(id);
-    setSelected(playlists.find((p) => p.id === id));
     showDetails();
   };
 
@@ -28,11 +27,9 @@ const PlaylistsView = (props: Props) => {
     draft.id = crypto.randomUUID();
     setPlaylists(appendItem(draft));
     setSelectedId(draft.id);
-    setSelected(draft);
   };
 
   const savePlaylist = (draft: Playlist) => {
-    setSelected(draft);
     setPlaylists(updateItem(draft));
     setMode("details");
   };
@@ -43,6 +40,16 @@ const PlaylistsView = (props: Props) => {
     setMode("creator");
     setSelectedId("");
   };
+
+  // Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
+  // setSelected(playlists.find((p) => p.id === selectedId));
+
+  useEffect(() => {
+    console.log("render effect");
+    setSelected(playlists.find((p) => p.id === selectedId));
+  });
+
+  console.log("render");
 
   return (
     <div>
