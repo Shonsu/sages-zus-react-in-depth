@@ -27,21 +27,32 @@ const PlaylistEditor = (props: Props) => {
       <div className="grid gap-5">
         <div className="grid gap-2">
           <label>Name</label>
-          <input type="text" value={playlist.name} onChange={nameChange} />
+          <input type="text" value={playlist.name} onChange={nameChange} name="name" />
 
           <div className="text-end">{playlist.name.length} / 100</div>
         </div>
 
         <div className="grid gap-2">
           <label>
-            <input type="checkbox" defaultChecked={playlist.public} />
+            <input
+              type="checkbox"
+              checked={playlist.public}
+              onChange={(e) =>
+                setPlaylist({ ...playlist, public: e.target.checked })
+              }
+            />
             Public
           </label>
         </div>
 
         <div className="grid gap-2">
           <label>Description</label>
-          <textarea defaultValue={playlist.description}></textarea>
+          <textarea
+            value={playlist.description}
+            onChange={(e) =>
+              setPlaylist({ ...playlist, description: e.target.value })
+            }
+          ></textarea>
         </div>
 
         <div className="flex justify-between">
