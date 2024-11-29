@@ -6,6 +6,11 @@ import { Button } from "primereact/button";
 import { mockPlaylists } from "../containers/mockPlaylists";
 import type { Playlist } from "../containers/Playlist";
 
+const appendPlaylist =
+  (draft: Playlist) =>
+  (nextPlaylists: Playlist[]): Playlist[] =>
+    [...nextPlaylists, draft];
+
 type Props = {};
 type Mode = "details" | "editor" | "creator";
 
@@ -26,18 +31,7 @@ const PlaylistsView = (props: Props) => {
   const createPlaylist = (draft: Playlist) => {
     draft.id = crypto.randomUUID();
 
-    debugger;
-
-    setPlaylists([...playlists, draft]);
-
-    setPlaylists((prevPlaylists) => {
-      return [...prevPlaylists, draft];
-    });
-
-    setPlaylists((prevPlaylists) => {
-      return [...prevPlaylists, draft];
-    });
-
+    setPlaylists(appendPlaylist(draft));
     setSelectedId(draft.id);
     setSelected(draft);
   };
@@ -45,14 +39,9 @@ const PlaylistsView = (props: Props) => {
   const savePlaylist = (draft: Playlist) => {
     setMode("details");
     setSelected(draft);
-
-    // // Mutable
-    // const index = playlists.findIndex((p) => p.id === draft.id);
-    // playlists[index] = draft;
-    // setPlaylists([...playlists]); // Defensive copy
-
-    // Immutable
-    setPlaylists(playlists.map((p) => (p.id === draft.id ? draft : p)));
+    setPlaylists((playlists) =>
+      playlists.map((p) => (p.id === draft.id ? draft : p))
+    );
   };
 
   const showDetails = () => setMode("details");
