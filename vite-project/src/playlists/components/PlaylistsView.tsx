@@ -12,11 +12,14 @@ type Mode = "details" | "editor";
 const PlaylistsView = (props: Props) => {
   const [mode, setMode] = useState<Mode>("details");
 
-  const [playlists, setPlaylists] = useState(mockPlaylists);
+  const [playlists, setPlaylists] = useState(
+    // mockPlaylists as (Playlist | undefined | string)[]
+    mockPlaylists
+  );
 
   const [selectedId, setSelectedId] = useState<Playlist["id"]>("123");
   const [selected, setSelected] = useState(playlists[0]);
-  
+
   const selectById = (id: Playlist["id"]) => {
     setSelectedId(id);
 
@@ -24,10 +27,21 @@ const PlaylistsView = (props: Props) => {
     // const found = playlists.find((p) => p.id === id) as Playlist
     // const found = {} as Playlist
     // const found = 123 as unknown as Playlist
-    const found = playlists.find((p) => p.id === id)!
+    // const found = playlists.find((p) => p.id === id)!
 
+    const found = playlists.find((p) => p.id === id);
 
-    setSelected(found);
+    if (typeof found === "object") {
+      found; // Playlist
+    } else if (found === undefined) {
+      found; // undefined
+    } else {
+      found; // never
+      // const _never: never = found;
+      // Exhaustiveness check 
+      found satisfies never;
+      throw new Error("Invalid server response");
+    }
   };
 
   const savePlaylist = (draft: Playlist) => {
