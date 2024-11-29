@@ -12,12 +12,15 @@ const playlistData = {
 
 const PlaylistEditor = (props: Props) => {
   const [playlist, setPlaylist] = useState(playlistData);
+  const [playlistName, setPlaylistName] = useState("");
 
   const handler = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const playlistCopy = { ...playlist };
-    // const playlistCopy = playlist;
-    playlistCopy.name = event.target.value;
-    setPlaylist(playlistCopy);
+    setPlaylist({ ...playlist, name: event.target.value });
+    setPlaylistName(event.target.value);
+  };
+
+  const submit = () => {
+    playlist;
   };
 
   return (
