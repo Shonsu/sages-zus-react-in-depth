@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PlaylistList from "../containers/PlaylistList";
 import PlaylistDetails from "../containers/PlaylistDetails";
 import PlaylistEditor from "../containers/PlaylistEditor";
@@ -7,7 +7,8 @@ import { Button } from "primereact/button";
 type Props = {};
 
 const PlaylistsView = (props: Props) => {
-  const moode = "details";
+  const [mode, setMode] = useState<"details" | "editor">("details");
+
   return (
     <div>
       <div className="grid grid-cols-2 gap-5">
@@ -15,11 +16,11 @@ const PlaylistsView = (props: Props) => {
           <PlaylistList />
         </div>
         <div>
-          <PlaylistDetails />
-          <PlaylistEditor />
-          
-          <Button>Edit</Button>
-          <Button>DEtails</Button>
+          {mode === "details" && <PlaylistDetails />}
+          {mode === "editor" && <PlaylistEditor />}
+
+          <Button onClick={() => setMode("editor")}>Edit</Button>
+          <Button onClick={() => setMode("details")}>DEtails</Button>
         </div>
       </div>
     </div>
