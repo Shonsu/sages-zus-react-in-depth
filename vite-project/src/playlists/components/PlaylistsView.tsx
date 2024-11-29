@@ -5,8 +5,7 @@ import PlaylistEditor from "../containers/PlaylistEditor";
 import { Button } from "primereact/button";
 import { mockPlaylists } from "../containers/mockPlaylists";
 import type { Playlist } from "../containers/Playlist";
-
-const appendItem = <T,>(x: T) => (xs: T[]): T[] => [...xs, x];
+import { appendItem, updateItem } from "../../common/fp-utils";
 
 type Props = {};
 type Mode = "details" | "editor" | "creator";
@@ -27,18 +26,15 @@ const PlaylistsView = (props: Props) => {
 
   const createPlaylist = (draft: Playlist) => {
     draft.id = crypto.randomUUID();
-
     setPlaylists(appendItem(draft));
     setSelectedId(draft.id);
     setSelected(draft);
   };
 
   const savePlaylist = (draft: Playlist) => {
-    setMode("details");
     setSelected(draft);
-    setPlaylists((playlists) =>
-      playlists.map((p) => (p.id === draft.id ? draft : p))
-    );
+    setPlaylists(updateItem(draft));
+    setMode("details");
   };
 
   const showDetails = () => setMode("details");
