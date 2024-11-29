@@ -14,7 +14,7 @@ const PlaylistsView = (props: Props) => {
 
   const [playlists, setPlaylists] = useState(mockPlaylists);
 
-  const [selectedId, setSelectedId] = useState<Playlist["id"]>("123");
+  const [selectedId, setSelectedId] = useState<Playlist["id"]>("");
   const [selected, setSelected] = useState<Playlist>();
 
   const selectById = (id: Playlist["id"]) => {
@@ -23,8 +23,12 @@ const PlaylistsView = (props: Props) => {
   };
 
   const createPlaylist = (draft: Playlist) => {
-    draft.id = crypto.randomUUID()
-    
+    draft.id = crypto.randomUUID();
+
+    setPlaylists([...playlists, draft]);
+    setMode("details");
+    setSelected(draft);
+    setSelectedId(draft.id);
   };
 
   const savePlaylist = (draft: Playlist) => {
@@ -42,7 +46,10 @@ const PlaylistsView = (props: Props) => {
 
   const showDetails = () => setMode("details");
   const showEditor = () => setMode("editor");
-  const showCreator = () => setMode("creator");
+  const showCreator = () => {
+    setMode("creator");
+    setSelectedId('');
+  };
 
   return (
     <div>
