@@ -25,6 +25,10 @@ const PlaylistEditor = ({
   // Watch parent props, and update state
   useEffect(() => {
     setPlaylist(playlistFromParent);
+
+    return () => {
+      console.log("Editor Destroyed");
+    };
   }, [playlistFromParent]);
 
   const nameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {

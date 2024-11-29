@@ -20,8 +20,18 @@ const PlaylistsView = (props: Props) => {
 
   const selectById = (id: Playlist["id"]) => {
     setSelectedId(id);
-    // showDetails();
   };
+
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setSelected(playlists.find((p) => p.id === selectedId));
+    }, 2000);
+
+    return () => {
+      clearTimeout(handler);
+    }
+  }, [selectedId, playlists]);
 
   const createPlaylist = (draft: Playlist) => {
     draft.id = crypto.randomUUID();
@@ -40,10 +50,6 @@ const PlaylistsView = (props: Props) => {
     setMode("creator");
     setSelectedId("");
   };
-
-  useEffect(() => {
-    setSelected(playlists.find((p) => p.id === selectedId));
-  }, [selectedId, playlists]);
 
   return (
     <div>
