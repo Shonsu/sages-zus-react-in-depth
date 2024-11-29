@@ -15,8 +15,10 @@ const PlaylistList = ({ playlists, selectedId, onSelect }: Props) => {
       <div className="divide-y divide-slate-400 divide-solid">
         {playlists.map((p, index, all) => (
           <div
-            className={`px-2 py-5 ${
-              selectedId == p.id ? "bg-primary-300 text-white" : ""
+            className={`px-2 py-5  ${
+              selectedId == p.id
+                ? "bg-primary-300 text-white"
+                : "cursor-pointer hover:bg-primary-100"
             } `}
             onClick={() => onSelect(p.id)}
             key={p.id}
