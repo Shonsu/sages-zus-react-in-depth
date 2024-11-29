@@ -12,7 +12,7 @@ type Mode = "details" | "editor";
 const PlaylistsView = (props: Props) => {
   const [mode, setMode] = useState<Mode>("details");
 
-  const playlists = mockPlaylists;
+  const [playlists, setPlaylists] = useState(mockPlaylists);
 
   const [selectedId, setSelectedId] = useState<Playlist["id"]>("123");
   const [selected, setSelected] = useState(playlists[0]);
@@ -22,14 +22,16 @@ const PlaylistsView = (props: Props) => {
   };
 
   const savePlaylist = (draft: Playlist) => {
-    console.log("Saving", draft);
-    
-    setSelected(draft);
-    setMode("details");
-    
-    // Much mutable!
-    const index = playlists.findIndex((p) => p.id === draft.id);
-    playlists[index] = draft
+    // setMode("details");
+    // setSelected(draft);
+
+    // // Mutable
+    // const index = playlists.findIndex((p) => p.id === draft.id);
+    // playlists[index] = draft;
+    // setPlaylists([...playlists]); // Defensive copy
+
+    // Immutable
+    setPlaylists(playlists.map((p) => (p.id === draft.id ? draft : p)));
   };
 
   const showDetails = () => setMode("details");
