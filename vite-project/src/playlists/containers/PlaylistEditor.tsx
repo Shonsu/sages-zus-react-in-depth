@@ -18,9 +18,14 @@ const EMPTY_PLAYLIST = { id: "", name: "", public: false, description: "" };
 const PlaylistEditor = ({
   onCancel,
   onSave,
-  playlist: playlistData = EMPTY_PLAYLIST,
+  playlist: playlistFromParent = EMPTY_PLAYLIST,
 }: Props) => {
-  const [playlist, setPlaylist] = useState(playlistData);
+  const [playlist, setPlaylist] = useState(playlistFromParent);
+
+  // Watch parent props, and update state
+  useEffect(() => {
+    setPlaylist(playlistFromParent);
+  }, [playlistFromParent]);
 
   const nameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setPlaylist({ ...playlist, name: event.target.value });
@@ -33,12 +38,12 @@ const PlaylistEditor = ({
   const nameRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    // document.getElementById("playlist_name")?.focus();
-    nameRef.current?.focus()
+    nameRef.current?.focus();
   }, []);
 
   return (
     <div>
+      <pre>{JSON.stringify(playlistFromParent, null, 2)}</pre>
       <pre>{JSON.stringify(playlist, null, 2)}</pre>
       <div className="grid gap-5">
         <div className="grid gap-2">

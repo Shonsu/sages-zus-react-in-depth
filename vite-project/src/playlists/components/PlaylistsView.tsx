@@ -20,7 +20,7 @@ const PlaylistsView = (props: Props) => {
 
   const selectById = (id: Playlist["id"]) => {
     setSelectedId(id);
-    showDetails();
+    // showDetails();
   };
 
   const createPlaylist = (draft: Playlist) => {
