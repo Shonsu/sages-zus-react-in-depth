@@ -62,3 +62,6 @@ https://flukeout.github.io/
 Emmet Cheat Sheet
 Tailwind Cheat Sheet
 CSS Dinner
+
+# REact Devtools
+https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en
