@@ -14,11 +14,6 @@ const PlaylistEditor = ({
   onSave,
   playlist: playlistData = EMPTY_PLAYLIST,
 }: Props) => {
- 
-  // playlistData = playlistData || EMPTY_PLAYLIST;
-  // playlistData = playlistData ?? EMPTY_PLAYLIST;
-  // playlistData ??= EMPTY_PLAYLIST;
-
   const [playlist, setPlaylist] = useState(playlistData);
 
   const nameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
