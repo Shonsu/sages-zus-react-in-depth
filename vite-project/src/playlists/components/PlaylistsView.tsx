@@ -13,8 +13,8 @@ const PlaylistsView = (props: Props) => {
   const [mode, setMode] = useState<Mode>("details");
 
   const playlists = mockPlaylists;
-  
-  const [selectedId, setSelectedId] = useState<Playlist["id"]>('123');
+
+  const [selectedId, setSelectedId] = useState<Playlist["id"]>("123");
   const [selected, setSelected] = useState(playlists[0]);
   const selectById = (id: Playlist["id"]) => {
     setSelectedId(id);
@@ -23,6 +23,13 @@ const PlaylistsView = (props: Props) => {
 
   const savePlaylist = (draft: Playlist) => {
     console.log("Saving", draft);
+    
+    setSelected(draft);
+    setMode("details");
+    
+    // Much mutable!
+    const index = playlists.findIndex((p) => p.id === draft.id);
+    playlists[index] = draft
   };
 
   const showDetails = () => setMode("details");
