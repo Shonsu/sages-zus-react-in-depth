@@ -2,17 +2,14 @@
 
 import { Button } from "primereact/button";
 import React from "react";
+import type { Playlist } from "./Playlist";
 
-type Props = {};
+type Props = {
+  playlist: Playlist;
+  onEdit: () => void;
+};
 
-const PlaylistDetails = (props: Props) => {
-  const playlist = {
-    id: '123',
-    name: "Playlist 123",
-    public: true,
-    description: "Best playlist",
-  };
-
+const PlaylistDetails = ({ onEdit, playlist }: Props) => {
   return (
     <div>
       {true} {false} {null} {undefined}
@@ -36,10 +33,9 @@ const PlaylistDetails = (props: Props) => {
           <div>{playlist.description}</div>
         </div>
 
-<div className="flex content-between">
-        <Button onClick={() =>{}}>Edit</Button>
-</div>
-
+        <div className="flex content-between">
+          <Button onClick={onEdit}>Edit</Button>
+        </div>
       </div>
     </div>
   );

@@ -13,8 +13,8 @@ const PlaylistsView = (props: Props) => {
   const [mode, setMode] = useState<Mode>("details");
 
   const playlists = mockPlaylists;
-  const [selectedId, setSelectedId] = useState<Playlist["id"]>();
-
+  
+  const [selectedId, setSelectedId] = useState<Playlist["id"]>('123');
   const [selected, setSelected] = useState(playlists[0]);
   const selectById = (id: Playlist["id"]) => {
     setSelectedId(id);
@@ -41,8 +41,16 @@ const PlaylistsView = (props: Props) => {
         </div>
         <div>
           {selected.name}
-          {mode === "details" && <PlaylistDetails />}
-          {mode === "editor" && <PlaylistEditor />}
+          {mode === "details" && (
+            <PlaylistDetails playlist={selected} onEdit={showEditor} />
+          )}
+          {mode === "editor" && (
+            <PlaylistEditor
+              playlist={selected}
+              onCancel={showDetails}
+              onSave={savePlaylist}
+            />
+          )}
         </div>
       </div>
     </div>

@@ -1,16 +1,18 @@
 import React, { useState, type ChangeEvent } from "react";
 import AppButton from "../../common/components/AppButton";
+import type { Playlist } from "./Playlist";
 
-type Props = {};
-
-const playlistData = {
-  id: 123,
-  name: "Playlist 123",
-  public: true,
-  description: "Best playlist",
+type Props = {
+  playlist: Playlist;
+  onCancel: () => void;
+  onSave: (draft: Playlist) => void;
 };
 
-const PlaylistEditor = (props: Props) => {
+const PlaylistEditor = ({
+  onCancel,
+  onSave,
+  playlist: playlistData,
+}: Props) => {
   const [playlist, setPlaylist] = useState(playlistData);
 
   const nameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -18,7 +20,7 @@ const PlaylistEditor = (props: Props) => {
   };
 
   const submit = () => {
-    playlist;
+    onSave(playlist);
   };
 
   return (
@@ -61,8 +63,8 @@ const PlaylistEditor = (props: Props) => {
         </div>
 
         <div className="flex justify-between">
-          <AppButton>Cancel</AppButton>
-          <AppButton>Save</AppButton>
+          <AppButton onClick={onCancel}>Cancel</AppButton>
+          <AppButton onClick={submit}>Save</AppButton>
         </div>
       </div>
     </div>
