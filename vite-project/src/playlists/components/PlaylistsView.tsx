@@ -16,9 +16,18 @@ const PlaylistsView = (props: Props) => {
 
   const [selectedId, setSelectedId] = useState<Playlist["id"]>("123");
   const [selected, setSelected] = useState(playlists[0]);
+  
   const selectById = (id: Playlist["id"]) => {
     setSelectedId(id);
-    setSelected(playlists.find((p) => p.id === id)!);
+
+    // const found = playlists.find((p) => p.id === id) as any
+    // const found = playlists.find((p) => p.id === id) as Playlist
+    // const found = {} as Playlist
+    // const found = 123 as unknown as Playlist
+    const found = playlists.find((p) => p.id === id)!
+
+
+    setSelected(found);
   };
 
   const savePlaylist = (draft: Playlist) => {
