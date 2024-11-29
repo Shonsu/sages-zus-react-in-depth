@@ -1,4 +1,4 @@
-import React, { useState, type ChangeEvent } from "react";
+import React, { useEffect, useState, type ChangeEvent } from "react";
 import AppButton from "../../common/components/AppButton";
 import type { Playlist } from "./Playlist";
 
@@ -24,7 +24,9 @@ const PlaylistEditor = ({
     onSave(playlist);
   };
 
-  document.getElementById('playlist_name')?.focus()
+  useEffect(() => {
+    document.getElementById("playlist_name")?.focus();
+  }, []);
 
   return (
     <div>
