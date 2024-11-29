@@ -19,7 +19,7 @@ type Props = {
 const AppButton = ({ primary, ...props }: Props) => {
   return (
     <Button {...props} pt={primary ? PrimaryButtonPT : {}}>
-      Login
+      {props.children}
     </Button>
   );
 };
