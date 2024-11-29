@@ -20,21 +20,26 @@ const PlaylistsView = (props: Props) => {
   const selectById = (id: Playlist["id"]) => {
     setSelectedId(id);
     setSelected(playlists.find((p) => p.id === id));
-    showDetails()
+    showDetails();
   };
 
   const createPlaylist = (draft: Playlist) => {
     draft.id = crypto.randomUUID();
 
-    debugger
-    setPlaylists([...playlists, draft]);
-    setPlaylists([...playlists, draft]);
-    setPlaylists([...playlists, draft]);
+    debugger;
+
     setPlaylists([...playlists, draft]);
 
-    selectById(draft.id)
-    // setSelectedId(draft.id);
-    // setSelected(draft);
+    setPlaylists((prevPlaylists) => {
+      return [...prevPlaylists, draft];
+    });
+
+    setPlaylists((prevPlaylists) => {
+      return [...prevPlaylists, draft];
+    });
+
+    setSelectedId(draft.id);
+    setSelected(draft);
   };
 
   const savePlaylist = (draft: Playlist) => {
@@ -54,7 +59,7 @@ const PlaylistsView = (props: Props) => {
   const showEditor = () => setMode("editor");
   const showCreator = () => {
     setMode("creator");
-    setSelectedId('');
+    setSelectedId("");
   };
 
   return (

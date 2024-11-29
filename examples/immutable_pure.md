@@ -16,3 +16,12 @@ function getWeather(city) {
 const thunk = getWeather('Warszawa')
 
 ```
+
+# Sideefects  // delay effectful calculations
+```ts
+function getWeather(city) {
+    
+    return db.find(city) // impure now 
+    return (db) => db.find() // impure later
+}
+```
