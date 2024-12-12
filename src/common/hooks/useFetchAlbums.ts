@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { Album } from "../../common/model/Album";
+import { Album } from "../model/Album";
 import {
   fetchAlbumById,
   fetchAlbumSearchResults,
-} from "../../common/services/MusicAPI";
+} from "../services/MusicAPI";
 import { Options } from "ky";
 
 export function useFetch<T, P>(

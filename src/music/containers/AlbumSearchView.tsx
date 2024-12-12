@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import SearchForm from "../components/SearchForm";
 import ResultsGrid from "../components/ResultsGrid";
-import { ProgressSpinner } from "primereact/progressspinner";
-import { useFetch, useFetchAlbums } from "./useFetchAlbums";
+import { useFetch } from "../../common/hooks/useFetchAlbums";
 import { BigSpinner } from "../../common/components/BigSpinner";
-import { ErrorMessage } from "./ErrorMessage";
+import { ErrorMessage } from "../../common/components/ErrorMessage";
 import { VStack } from "../../common/components/Stack";
 import { fetchAlbumSearchResults } from "../../common/services/MusicAPI";
 
@@ -12,7 +11,7 @@ const AlbumSearchView = () => {
   const [query, setQuery] = useState("");
 
   // const { data: results = [], isLoading, error } = useFetchAlbums(query);
-  
+
   const {
     data: results = [],
     isLoading,
