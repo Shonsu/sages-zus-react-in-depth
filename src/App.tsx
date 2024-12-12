@@ -8,11 +8,11 @@ import PlaylistsView from "./playlists/components/PlaylistsView";
 import AppButton from "./common/components/AppButton";
 import AlbumSearchView from "./music/containers/AlbumSearchView";
 import { checkLogin, login } from "./common/services/Auth";
+import { Outlet } from "react-router";
 
 function App() {
-  
   const status = useMemo(() => checkLogin(), []); // before render
-  
+
   useEffect(() => checkLogin(), []); // after first render
 
   return (
@@ -26,7 +26,7 @@ function App() {
         </div>
       </div>
       <div className="container my-5">
-        <AlbumSearchView />
+        <Outlet />
       </div>
     </>
   );

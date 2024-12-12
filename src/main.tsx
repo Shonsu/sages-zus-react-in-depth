@@ -14,8 +14,6 @@ import "primereact/resources/themes/lara-light-cyan/theme.css";
 import "primeicons/primeicons.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const RETRY_CODES = [408, 429, 500, 502, 503, 504];
-
 // Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,14 +26,49 @@ const queryClient = new QueryClient({
     },
   },
 });
+const RETRY_CODES = [408, 429, 500, 502, 503, 504];
+
+import { RouterProvider, createBrowserRouter, redirect } from "react-router";
+import AlbumSearchView from "./music/containers/AlbumSearchView.tsx";
+import PlaylistsView from "./playlists/components/PlaylistsView.tsx";
+import AlbumDetailView from "./music/containers/AlbumDetailView.tsx";
+
+const router = createBrowserRouter([
+  {
+    path: "",
+    element: <App />,
+    children: [
+      {
+        index: true,
+        // element: <div>HEllo!</div>,
+        loader: () => redirect("/search"),
+      },
+      {
+        path: "music",
+        children: [
+          {
+            path: "search",
+            element: <AlbumSearchView />,
+          },
+          {
+            path: "albums/:albumId",
+            element: <AlbumDetailView />,
+          },
+        ],
+      },
+      {
+        path: "playlists",
+        element: <PlaylistsView />,
+      },
+    ],
+  },
+]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    {" "}
-    {/* Strict useEffect! */}
     <PrimeReactProvider>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <RouterProvider router={router} />
       </QueryClientProvider>
     </PrimeReactProvider>
   </StrictMode>
