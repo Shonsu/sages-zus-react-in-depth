@@ -3,9 +3,9 @@ import PlaylistList from "../containers/PlaylistList";
 import PlaylistDetails from "../containers/PlaylistDetails";
 import PlaylistEditor from "../containers/PlaylistEditor";
 import { Button } from "primereact/button";
-import { mockPlaylists } from "../containers/mockPlaylists";
 import type { Playlist } from "../../common/model/Playlist";
 import { appendItem, updateItem } from "../../common/fp-utils";
+import { mockPlaylists } from "../../common/fixtures/mockPlaylists";
 
 type Props = {};
 type Mode = "details" | "editor" | "creator";
