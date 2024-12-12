@@ -116,3 +116,8 @@ https://use-http.com/#/
 # React Router
 https://reactrouter.com/start/library/installation
 
+
+# Parsers / Validators
+https://github.com/colinhacks/zod
+https://joi.dev/api/?v=17.13.3#alternatives
+https://github.com/jquense/yup
