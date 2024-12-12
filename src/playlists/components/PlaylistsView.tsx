@@ -4,7 +4,7 @@ import PlaylistDetails from "../containers/PlaylistDetails";
 import PlaylistEditor from "../containers/PlaylistEditor";
 import { Button } from "primereact/button";
 import { mockPlaylists } from "../containers/mockPlaylists";
-import type { Playlist } from "../containers/Playlist";
+import type { Playlist } from "../../common/model/Playlist";
 import { appendItem, updateItem } from "../../common/fp-utils";
 
 type Props = {};

@@ -2,7 +2,7 @@
 
 import { Button } from "primereact/button";
 import React from "react";
-import type { Playlist } from "./Playlist";
+import type { Playlist } from "../../common/model/Playlist";
 
 type Props = {
   playlist?: Playlist;

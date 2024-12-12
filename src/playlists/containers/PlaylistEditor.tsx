@@ -1,6 +1,6 @@
 import React, { useEffect, useId, useState, type ChangeEvent } from "react";
 import AppButton from "../../common/components/AppButton";
-import type { Playlist } from "./Playlist";
+import type { Playlist } from "../../common/model/Playlist";
 import { useFocus } from "../../common/hooks/useFocus";
 
 type Props = {

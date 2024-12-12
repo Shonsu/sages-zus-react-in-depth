@@ -67,6 +67,27 @@ touch ./src/playlists/containers/PlaylistDetails.tsx
 touch ./src/playlists/containers/PlaylistList.tsx
 touch ./src/playlists/containers/PlaylistEditor.tsx
 
+# Music module
+
+mkdir -p ./src/music/components
+mkdir -p ./src/music/containers
+
+touch src/music/containers/AlbumSearchView.tsx
+touch src/music/containers/AlbumDetailView.tsx
+
+touch src/music/components/SearchForm.tsx
+touch src/music/components/ResultsGrid.tsx
+touch src/music/components/AlbumCard.tsx
+
+mkdir -p src/common/model
+mkdir -p src/common/fixtures
+touch src/common/model/Album.ts
+touch src/common/fixtures/mockAlbums.ts
+
+mkdir -p ./src/common/services
+touch src/common/services/MusicAPI.ts
+
+
 # CSS Dinner
 https://flukeout.github.io/
 
