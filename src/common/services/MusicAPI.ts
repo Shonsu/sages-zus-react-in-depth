@@ -1,12 +1,26 @@
+import ky, { Options } from "ky";
 import { mockAlbums } from "../fixtures/mockAlbums";
 import { getToken } from "./Auth";
+import { AlbumSearchResponse } from "../model/Album";
 
-// export const fetchAlbumSearchResults = (query = "") => {
-//   console.log("searching " + query);
-//   return Promise.resolve(mockAlbums);
-// }
+export const fetchAlbumSearchResults = (query = "", init?: Options) => {
+  ky.get("https://api.spotify.com/v1/search", {
+    searchParams: {
+      type: "album",
+      query: query,
+    },
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+    ...init,
+  })
+    .json<AlbumSearchResponse>()
+    .catch((e) => Promise.reject(new Error(e.error.message)))
+    .then((res) => res.albums.items);
+};
 
-export const fetchAlbumSearchResults = (query = "", init?: RequestInit) => {
+
+export const fetchAlbumSearchResults2 = (query = "", init?: RequestInit) => {
   return fetch(
     "https://api.spotify.com/v1/search?" +
       new URLSearchParams({
@@ -28,11 +42,7 @@ export const fetchAlbumSearchResults = (query = "", init?: RequestInit) => {
     .then((res) => res.albums.items);
 };
 
-// Monadic Chain
-
-// cz1 = [1, 2, 3]
-//   .map((x) => x)
-//   .map((x) => x)
-
-// cz1.map((x) => x)
-//   .forEach(console.log);
+// export const fetchAlbumSearchResults = (query = "") => {
+//   console.log("searching " + query);
+//   return Promise.resolve(mockAlbums);
+// }
