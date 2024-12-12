@@ -6,9 +6,7 @@ import { getToken } from "./Auth";
 //   return Promise.resolve(mockAlbums);
 // }
 
-export const fetchAlbumSearchResults = (query = "") => {
-  const huston = new AbortController();
-
+export const fetchAlbumSearchResults = (query = "", init?: RequestInit) => {
   return fetch(
     "https://api.spotify.com/v1/search?" +
       new URLSearchParams({
@@ -19,7 +17,7 @@ export const fetchAlbumSearchResults = (query = "") => {
       headers: {
         Authorization: `Bearer ${getToken()}`,
       },
-      signal: huston.signal,
+      ...init,
     }
   )
     .then((res) =>

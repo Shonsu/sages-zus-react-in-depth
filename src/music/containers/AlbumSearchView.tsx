@@ -3,19 +3,31 @@ import SearchForm from "../components/SearchForm";
 import ResultsGrid from "../components/ResultsGrid";
 import { fetchAlbumSearchResults } from "../../common/services/MusicAPI";
 import { Album } from "../../common/model/Album";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 type Props = {};
 
 const AlbumSearchView = (props: Props) => {
   const [query, setQuery] = useState("");
-  const [data, setData] = useState<Album[]>([]);
+
+  const [data = [], setData] = useState<Album[] | undefined>([]);
+  const [error, setError] = useState<unknown>();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!query) return;
+    const huston = new AbortController();
 
-    fetchAlbumSearchResults(query)
-      .then((data) => setData(data));
-    
+    setIsLoading(true);
+    setError(undefined);
+    setData(undefined);
+
+    fetchAlbumSearchResults(query, { signal: huston.signal })
+      .then((data) => setData(data))
+      .catch((error) => setError(error))
+      .finally(() => setIsLoading(false));
+
+    return () => huston.abort("Cancel");
   }, [query]);
 
   return (
@@ -26,6 +38,9 @@ const AlbumSearchView = (props: Props) => {
           <SearchForm onSearch={setQuery} />
         </div>
         <div>
+          {isLoading && <ProgressSpinner className="mx-auto my-10" />}
+          {error instanceof Error && <p>{error.message}</p>}
+
           <ResultsGrid results={data} />
         </div>
       </div>
