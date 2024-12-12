@@ -1,56 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SearchForm from "../components/SearchForm";
 import ResultsGrid from "../components/ResultsGrid";
-import { fetchAlbumSearchResults } from "../../common/services/MusicAPI";
-import { Album } from "../../common/model/Album";
 import { ProgressSpinner } from "primereact/progressspinner";
+import { useFetchAlbums } from "./useFetchAlbums";
+import { BigSpinner } from "../../common/components/BigSpinner";
+import { ErrorMessage } from "./ErrorMessage";
+import { VStack } from "../../common/components/Stack";
 
-type Props = {};
-
-const AlbumSearchView = (props: Props) => {
+const AlbumSearchView = () => {
   const [query, setQuery] = useState("");
 
-  const [data = [], setData] = useState<Album[] | undefined>([]);
-  const [error, setError] = useState<unknown>();
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    if (!query) return;
-    const huston = new AbortController();
-
-    setIsLoading(true);
-    setError(undefined);
-    setData(undefined);
-
-    fetchAlbumSearchResults(query, { signal: huston.signal })
-      .then((data) => setData(data))
-      .catch((error) => setError(error))
-      .finally(() => setIsLoading(false));
-
-    return () => huston.abort("Cancel");
-  }, [query]);
+  const { data, isLoading, error } = useFetchAlbums(query);
 
   return (
-    <div>
-      {/* .grid.gap-5>div*2 */}
-      <div className="grid gap-5">
-        <div>
-          <SearchForm onSearch={setQuery} />
-        </div>
-        <div>
-          {isLoading && (
-            <ProgressSpinner className="flex justify-center my-10" />
-          )}
-          {error instanceof Error && (
-            <p className="p-5 text-red-500 border border-solid border-red-500">
-              {error.message}
-            </p>
-          )}
+    <VStack>
+      <SearchForm onSearch={setQuery} />
 
-          <ResultsGrid results={data} />
-        </div>
-      </div>
-    </div>
+      <VStack gap="sm">
+        <BigSpinner show={isLoading} />
+        <ErrorMessage error={error} />
+        <ResultsGrid results={data} />
+      </VStack>
+    </VStack>
   );
 };
 
