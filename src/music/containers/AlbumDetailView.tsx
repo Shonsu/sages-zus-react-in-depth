@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 import { fetchAlbumById } from "../../common/services/MusicAPI";
 import { useQueries, useQuery } from "@tanstack/react-query";
@@ -23,9 +23,20 @@ const AlbumDetailView = (props: Props) => {
   });
 
   const [currentTrack, setCurrentTrack] = useState<Track>();
+
   const playTrack = (id: string): void => {
+    debugger;
     setCurrentTrack(album?.tracks.items.find((t) => t.id == id)!);
   };
+
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    audioRef.current.volume = 0.2;
+    audioRef.current.play();
+  }, [currentTrack]);
 
   if (error) return <ErrorMessage error={error} />;
   if (!album) return <BigSpinner show={album} />;
@@ -36,7 +47,17 @@ const AlbumDetailView = (props: Props) => {
 
       <div className="grid grid-cols-2 gap-5">
         <div>
-          <AlbumCard album={album} />
+          {/* <AlbumCard album={album} /> */}
+          <iframe
+            title="Spotify"
+            className="SpotifyPlayer"
+            src={`https://embed.spotify.com/?uri=${
+              album?.uri
+            }&view=${"coverart"}&theme=${"white"}`}
+            width={400}
+            height={400}
+            allowTransparency={true}
+          />
         </div>
 
         {/* .grid.gap-5>.grid.gap-2*3>strong{Name}+div */}
@@ -49,6 +70,15 @@ const AlbumDetailView = (props: Props) => {
             <strong>Name</strong>
             <div>{album.artists[0].name}</div>
           </div>
+
+          <audio
+            ref={audioRef}
+            controls
+            className="w-full"
+            // src={currentTrack?.preview_url}
+            src="https://p.scdn.co/mp3-preview/12bbb71164d26570ce3fad1a9208628d252f3527"
+          />
+
           <TracksList
             items={album.tracks.items}
             selectedId={currentTrack?.id}
