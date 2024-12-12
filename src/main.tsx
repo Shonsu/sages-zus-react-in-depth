@@ -28,7 +28,12 @@ const queryClient = new QueryClient({
 });
 const RETRY_CODES = [408, 429, 500, 502, 503, 504];
 
-import { RouterProvider, createBrowserRouter, redirect } from "react-router";
+import {
+  Outlet,
+  RouterProvider,
+  createBrowserRouter,
+  redirect,
+} from "react-router";
 import AlbumSearchView from "./music/containers/AlbumSearchView.tsx";
 import PlaylistsView from "./playlists/components/PlaylistsView.tsx";
 import AlbumDetailView from "./music/containers/AlbumDetailView.tsx";
@@ -45,7 +50,16 @@ const router = createBrowserRouter([
       },
       {
         path: "music",
+        element: (
+          <div>
+            <Outlet />
+          </div>
+        ),
         children: [
+          {
+            index: true,
+            loader: () => redirect("/music/search"),
+          },
           {
             path: "search",
             element: <AlbumSearchView />,
