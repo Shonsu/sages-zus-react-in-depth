@@ -13,7 +13,9 @@ const AlbumSearchView = (props: Props) => {
   useEffect(() => {
     if (!query) return;
 
-    fetchAlbumSearchResults(query).then((data) => setData(data));
+    fetchAlbumSearchResults(query)
+      .then((data) => setData(data));
+    
   }, [query]);
 
   return (

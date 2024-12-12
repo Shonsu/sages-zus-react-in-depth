@@ -35,7 +35,7 @@ strict-ssl=false
 
 # FUnctional 
 https://learnyouahaskell.github.io/chapters.html
-
+// Monadic Chain
 
 # UI Toolkits
 https://js.devexpress.com/React/Documentation/Guide/UI_Components/Accordion/Demos/
