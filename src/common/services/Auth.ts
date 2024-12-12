@@ -14,7 +14,7 @@ export const login = () => {
     scope,
     redirect_uri,
     state: "",
-    show_dialog:'true',
+    show_dialog: "true",
   });
   window.location.href = url + "?" + params;
 };

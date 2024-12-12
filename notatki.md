@@ -17,7 +17,12 @@ git clone https://bitbucket.org/ev45ive/sages-zus-react-in-depth.git
 
 F1 -> Clone => PASTE ^ => Clone from URL -> Select location -> Open
 
+git clone -c http.sslVerify=false  https://bitbucket.org/ev45ive/sages-zus-react-in-depth.git
+
+git config http.sslVerify "false"
+
 git config --global http.proxy http://fpx.zus.ad:8080/
+git config --global http.sslVerify "false"
 
 # Proxy NPM 
 Utworz - C:/twoj uzytkownik/.npmrc 
