@@ -3,8 +3,15 @@ import AppButton from "../../common/components/AppButton";
 import type { Playlist } from "../../common/model/Playlist";
 import { useFocus } from "../../common/hooks/useFocus";
 
-import { Controller, useForm } from "react-hook-form";
+import {
+  Control,
+  Controller,
+  FieldValues,
+  Path,
+  useForm,
+} from "react-hook-form";
 import { InputText } from "primereact/inputtext";
+import { Checkbox } from "primereact/checkbox";
 
 type Props = {
   playlist?: Playlist;
@@ -45,25 +52,11 @@ const PlaylistEditor = ({
     >
       <div className="grid gap-5">
         <div className="grid gap-2">
-          <label>Name</label>
-
-          <Controller
-            name="name"
-            control={control}
-            render={({ field, fieldState }) => (
-              <>
-                <InputText type="text" {...field} />
-                <div className="text-end">{field.value.length} / 100</div>
-              </>
-            )}
-          />
+          <InputWithCounter control={control} name="name" label="Name" />
         </div>
 
         <div className="grid gap-2">
-          <label>
-            <input type="checkbox" {...register("public")} />
-            Public
-          </label>
+          <Checkbox2 control={control} name="public" label="Public" />
         </div>
 
         <div className="grid gap-2">
@@ -81,3 +74,46 @@ const PlaylistEditor = ({
 };
 
 export default PlaylistEditor;
+
+type ControlProps<T extends FieldValues> = {
+  control: Control<T>;
+  name: Path<T>;
+  label: string;
+};
+
+const InputWithCounter = <T extends FieldValues>({
+  control,
+  name,
+  label,
+}: ControlProps<T>) => (
+  <Controller
+    name={name}
+    control={control}
+    render={({ field, fieldState }) => (
+      <>
+        <label>{label}</label>
+        <InputText type="text" {...field} />
+        <div className="text-end">{field.value.length} / 100</div>
+      </>
+    )}
+  />
+);
+
+const Checkbox2 = <T extends FieldValues>({
+  control,
+  name,
+  label,
+}: ControlProps<T>) => (
+  <Controller
+    name={name}
+    control={control}
+    render={({ field, fieldState }) => (
+      <>
+        <label>
+          <Checkbox checked={field.value} {...field} />
+          {label}
+        </label>
+      </>
+    )}
+  />
+);
