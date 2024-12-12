@@ -39,7 +39,7 @@ export const fetchAlbumSearchResults = async (query = "", init?: Options) => {
     },
     ...init,
   }).json<AlbumSearchResponse>();
-  
+
   return res.albums.items;
 };
 
@@ -76,8 +76,11 @@ export interface SpotifyError {
   };
 }
 
-export const fetchAlbumSearchResults2 = (query = "", init?: RequestInit) => {
-  return fetch(
+export const fetchAlbumSearchResults2 = async (
+  query = "",
+  init?: RequestInit
+) => {
+  const res = await fetch(
     "https://api.spotify.com/v1/search?" +
       new URLSearchParams({
         type: "album",
@@ -89,13 +92,13 @@ export const fetchAlbumSearchResults2 = (query = "", init?: RequestInit) => {
       },
       ...init,
     }
-  )
-    .then((res) =>
-      res.ok
-        ? res.json()
-        : res.json().then((e) => Promise.reject(new Error(e.error.message)))
-    )
-    .then((res) => res.albums.items);
+  );
+
+  const data = await res.json();
+
+  if (!res.ok) throw new Error(data.error.message);
+
+  return data.albums.items;
 };
 
 // export const fetchAlbumSearchResults = (query = "") => {
