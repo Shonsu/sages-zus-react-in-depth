@@ -26,14 +26,20 @@ const PlaylistSchema = z.object({
   id: z.string(),
   name: z
     .string()
-    .nonempty('Field is required')
+    .nonempty("Field is required")
     .min(3, "Value too short!")
     .regex(/[A-Z].*/, "Must start with capital letter"),
   public: z.boolean(),
   description: z.string(),
 });
 
+type Playlist2 = z.infer<typeof PlaylistSchema>;
 
+const dataFromUnknown: unknown = { id: 123 };
+
+const validatedPlaylist = PlaylistSchema.parse(dataFromUnknown); // Throw Error("Field is required")
+
+const p: Playlist = validatedPlaylist; // Playlist
 
 const PlaylistEditor = ({
   onCancel,
