@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import { mockPlaylists } from "./mockPlaylists";
 import type { Playlist } from "../../common/model/Playlist";
 
 type Props = {
