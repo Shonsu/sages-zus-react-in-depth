@@ -7,10 +7,9 @@ import type { Playlist } from "../../common/model/Playlist";
 import { appendItem, updateItem } from "../../common/fp-utils";
 import { mockPlaylists } from "../../common/fixtures/mockPlaylists";
 
-type Props = {};
 type Mode = "details" | "editor" | "creator";
 
-const PlaylistsView = (props: Props) => {
+const PlaylistsView = () => {
   const [mode, setMode] = useState<Mode>("details");
 
   const [playlists, setPlaylists] = useState(mockPlaylists);
@@ -103,3 +102,9 @@ const PlaylistsView = (props: Props) => {
 };
 
 export default PlaylistsView;
+
+
+export const Component = PlaylistsView;
+
+// export const loader = PlaylistsView;
+// export const action = PlaylistsView;

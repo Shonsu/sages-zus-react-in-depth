@@ -35,10 +35,14 @@ import {
   redirect,
 } from "react-router";
 import AlbumSearchView from "./music/containers/AlbumSearchView.tsx";
-import PlaylistsView from "./playlists/components/PlaylistsView.tsx";
+// import PlaylistsView from "./playlists/components/PlaylistsView.tsx";
 import AlbumDetailView from "./music/containers/AlbumDetailView.tsx";
 import { checkLogin } from "./common/services/Auth.ts";
 import { fetchAlbumById } from "./common/services/MusicAPI.ts";
+
+const LazyPlaylistsView = React.lazy(
+  () => import("./music/containers/AlbumDetailView.tsx")
+);
 
 const router = createBrowserRouter([
   {
@@ -80,7 +84,8 @@ const router = createBrowserRouter([
       },
       {
         path: "playlists",
-        element: <PlaylistsView />,
+        // element: <PlaylistsView />,
+        lazy: () => import("./playlists/components/PlaylistsView.tsx"),
       },
       {
         path: "callback",

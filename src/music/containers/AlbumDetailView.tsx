@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import { useLoaderData, useParams } from "react-router";
 import { fetchAlbumById } from "../../common/services/MusicAPI";
 import { useQueries, useQuery } from "@tanstack/react-query";
@@ -80,11 +80,11 @@ const AlbumDetailView = (props: Props) => {
             src="https://p.scdn.co/mp3-preview/12bbb71164d26570ce3fad1a9208628d252f3527"
           />
 
-          <TracksList
-            items={album.tracks.items}
-            selectedId={currentTrack?.id}
-            onSelect={playTrack}
-          />
+            <TracksList
+              items={album.tracks.items}
+              selectedId={currentTrack?.id}
+              onSelect={playTrack}
+            />
         </div>
       </div>
     </div>

@@ -12,6 +12,9 @@ type Props = {
   onSelect?: (id: string) => void;
 };
 
+const delay = (t = 500) =>
+  new Promise<void>((resolve) => setTimeout(resolve, t));
+
 const TracksList = ({ items, selectedId, onSelect }: Props) => {
   return (
     <div>
