@@ -97,3 +97,7 @@ CSS Dinner
 
 # REact Devtools
 https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en
+
+# Spotify
+xafejil469@kindomd.com
+
