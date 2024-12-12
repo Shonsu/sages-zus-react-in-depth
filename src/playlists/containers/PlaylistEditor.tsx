@@ -12,6 +12,8 @@ import {
 } from "react-hook-form";
 import { InputText } from "primereact/inputtext";
 import { Checkbox } from "primereact/checkbox";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 type Props = {
   playlist?: Playlist;
@@ -19,6 +21,19 @@ type Props = {
   onSave: (draft: Playlist) => void;
 };
 const EMPTY_PLAYLIST = { id: "", name: "", public: false, description: "" };
+
+const PlaylistSchema = z.object({
+  id: z.string(),
+  name: z
+    .string()
+    .nonempty('Field is required')
+    .min(3, "Value too short!")
+    .regex(/[A-Z].*/, "Must start with capital letter"),
+  public: z.boolean(),
+  description: z.string(),
+});
+
+
 
 const PlaylistEditor = ({
   onCancel,
@@ -35,6 +50,8 @@ const PlaylistEditor = ({
     watch,
   } = useForm({
     defaultValues: playlistToEdit,
+    resolver: zodResolver(PlaylistSchema),
+    mode: "all",
   });
 
   // const { name, onBlur, onChange, ref, disabled } = register("name");
@@ -46,6 +63,7 @@ const PlaylistEditor = ({
           onSave(data);
         },
         (errors) => {
+          debugger;
           errors.name?.message;
         }
       )}
@@ -89,10 +107,15 @@ const InputWithCounter = <T extends FieldValues>({
   <Controller
     name={name}
     control={control}
-    render={({ field, fieldState }) => (
+    render={({ field, fieldState, formState }) => (
       <>
         <label>{label}</label>
         <InputText type="text" {...field} />
+        {(fieldState.isDirty || fieldState.isTouched) && (
+          <>
+            <p className="text-red-500">{fieldState.error?.message}</p>
+          </>
+        )}
         <div className="text-end">{field.value.length} / 100</div>
       </>
     )}
