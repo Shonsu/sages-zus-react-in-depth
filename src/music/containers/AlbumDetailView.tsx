@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router";
+import { useLoaderData, useParams } from "react-router";
 import { fetchAlbumById } from "../../common/services/MusicAPI";
 import { useQueries, useQuery } from "@tanstack/react-query";
 import AlbumCard from "../components/AlbumCard";
@@ -13,19 +13,20 @@ type Props = {};
 const AlbumDetailView = (props: Props) => {
   const { albumId = "" } = useParams();
 
-  const {
-    data: album,
-    error,
-    isLoading,
-  } = useQuery({
-    queryKey: ["album/details/", albumId],
-    queryFn: () => fetchAlbumById(albumId),
-  });
+  // const {
+  //   data: album,
+  //   error,
+  //   isLoading,
+  // } = useQuery({
+  //   queryKey: ["album/details/", albumId],
+  //   queryFn: () => fetchAlbumById(albumId),
+  // });
+
+  const album = useLoaderData<typeof fetchAlbumById>();
 
   const [currentTrack, setCurrentTrack] = useState<Track>();
 
   const playTrack = (id: string): void => {
-    debugger;
     setCurrentTrack(album?.tracks.items.find((t) => t.id == id)!);
   };
 
@@ -38,8 +39,8 @@ const AlbumDetailView = (props: Props) => {
     audioRef.current.play();
   }, [currentTrack]);
 
-  if (error) return <ErrorMessage error={error} />;
-  if (!album) return <BigSpinner show={album} />;
+  // if (error) return <ErrorMessage error={error} />;
+  // if (!album) return <BigSpinner show={album} />;
 
   return (
     <div>

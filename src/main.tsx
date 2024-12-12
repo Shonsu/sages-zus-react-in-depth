@@ -38,6 +38,7 @@ import AlbumSearchView from "./music/containers/AlbumSearchView.tsx";
 import PlaylistsView from "./playlists/components/PlaylistsView.tsx";
 import AlbumDetailView from "./music/containers/AlbumDetailView.tsx";
 import { checkLogin } from "./common/services/Auth.ts";
+import { fetchAlbumById } from "./common/services/MusicAPI.ts";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,12 @@ const router = createBrowserRouter([
           {
             path: "albums/:albumId",
             element: <AlbumDetailView />,
+            // Router Guard
+            loader({ params }) {
+              if (!params.albumId) throw new Error("404");
+              return fetchAlbumById(params.albumId);
+              // retunr { res1, rs2, res}
+            },
           },
         ],
       },

@@ -35,11 +35,11 @@ const PlaylistSchema = z.object({
 
 type Playlist2 = z.infer<typeof PlaylistSchema>;
 
-const dataFromUnknown: unknown = { id: 123 };
 
-const validatedPlaylist = PlaylistSchema.parse(dataFromUnknown); // Throw Error("Field is required")
+// const dataFromUnknown: unknown = { id: 123 };
+// const validatedPlaylist = PlaylistSchema.parse(dataFromUnknown); // Throw Error("Field is required")
+// const p: Playlist = validatedPlaylist; // Playlist
 
-const p: Playlist = validatedPlaylist; // Playlist
 
 const PlaylistEditor = ({
   onCancel,
