@@ -32,7 +32,7 @@ const AlbumDetailView = (props: Props) => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    if (!audioRef.current) return;
+    if (!currentTrack || !audioRef.current) return;
 
     audioRef.current.volume = 0.2;
     audioRef.current.play();

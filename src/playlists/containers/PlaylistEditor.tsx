@@ -3,6 +3,8 @@ import AppButton from "../../common/components/AppButton";
 import type { Playlist } from "../../common/model/Playlist";
 import { useFocus } from "../../common/hooks/useFocus";
 
+import { useForm } from "react-hook-form";
+
 type Props = {
   playlist?: Playlist;
   onCancel: () => void;
@@ -13,77 +15,55 @@ const EMPTY_PLAYLIST = { id: "", name: "", public: false, description: "" };
 const PlaylistEditor = ({
   onCancel,
   onSave,
-  playlist: playlistFromParent = EMPTY_PLAYLIST,
+  playlist: playlistToEdit = EMPTY_PLAYLIST,
 }: Props) => {
-  const [playlist, setPlaylist] = useState(playlistFromParent);
+  const { formState, getValues, handleSubmit, register, setFocus, watch } =
+    useForm({
+      defaultValues: playlistToEdit,
+    });
 
-  // Watch parent props, and update state
-  useEffect(() => {
-    setPlaylist(playlistFromParent);
-
-    return () => {
-      console.log("Editor Destroyed");
-    };
-  }, [playlistFromParent]);
-
-  const nameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setPlaylist({ ...playlist, name: event.target.value });
-  };
-
-  const submit = () => {
-    onSave(playlist);
-  };
-
-  const { ref: nameRef, focus } = useFocus();
+  // const { name, onBlur, onChange, ref, disabled } = register("name");
 
   return (
-    <div>
-      {/* <pre>{JSON.stringify(playlistFromParent, null, 2)}</pre>
-      <pre>{JSON.stringify(playlist, null, 2)}</pre> */}
-
+    <form
+      onSubmit={handleSubmit(
+        (data) => {
+          onSave(data);
+        },
+        (errors) => {
+          errors.name?.message;
+        }
+      )}
+    >
       <div className="grid gap-5">
         <div className="grid gap-2">
           <label>Name</label>
           <input
-            ref={nameRef} // render DOM
             type="text"
-            value={playlist.name}
-            onChange={nameChange}
-            name="name"
+            {...register("name", { required: true, minLength: 3 })}
           />
 
-          <div className="text-end">{playlist.name.length} / 100</div>
+          {/* <div className="text-end">{playlist.name.length} / 100</div> */}
         </div>
 
         <div className="grid gap-2">
           <label>
-            <input
-              type="checkbox"
-              checked={playlist.public}
-              onChange={(e) =>
-                setPlaylist({ ...playlist, public: e.target.checked })
-              }
-            />
+            <input type="checkbox" {...register("public")} />
             Public
           </label>
         </div>
 
         <div className="grid gap-2">
           <label>Description</label>
-          <textarea
-            value={playlist.description}
-            onChange={(e) =>
-              setPlaylist({ ...playlist, description: e.target.value })
-            }
-          ></textarea>
+          <textarea {...register("description")}></textarea>
         </div>
 
         <div className="flex justify-between">
           <AppButton onClick={onCancel}>Cancel</AppButton>
-          <AppButton onClick={submit}>Save</AppButton>
+          <AppButton type="submit">Save</AppButton>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 
