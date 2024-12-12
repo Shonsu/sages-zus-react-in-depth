@@ -32,15 +32,19 @@ export const MusicAPI = ky.create({
 });
 
 export const fetchAlbumSearchResults = async (query = "", init?: Options) => {
-  const res = await MusicAPI.get("search", {
-    searchParams: {
-      type: "album",
-      query: query,
-    },
-    ...init,
-  }).json<AlbumSearchResponse>();
+  try {
+    const res = await MusicAPI.get("search", {
+      searchParams: {
+        type: "album",
+        query: query,
+      },
+      ...init,
+    }).json<AlbumSearchResponse>();
 
-  return res.albums.items;
+    return res.albums.items;
+  } catch (e) {
+    throw e;
+  }
 };
 
 export const fetchAlbumSearchResults3 = (query = "", init?: Options) => {
