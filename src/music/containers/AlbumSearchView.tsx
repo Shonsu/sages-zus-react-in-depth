@@ -6,15 +6,28 @@ import { BigSpinner } from "../../common/components/BigSpinner";
 import { ErrorMessage } from "../../common/components/ErrorMessage";
 import { VStack } from "../../common/components/Stack";
 import { fetchAlbumSearchResults } from "../../common/services/MusicAPI";
+import { useQuery } from "@tanstack/react-query";
 
 const AlbumSearchView = () => {
   const [query, setQuery] = useState("");
 
+  // const {
+  //   data: results = [],
+  //   isLoading,
+  //   error,
+  // } = useFetch(query, fetchAlbumSearchResults);
+
   const {
-    data: results = [],
-    isLoading,
+    data: results,
     error,
-  } = useFetch(query, fetchAlbumSearchResults);
+    isLoading,
+    // refetch,
+  } = useQuery({
+    queryKey: ["albums/search", query],
+    queryFn: ({ signal }) => fetchAlbumSearchResults(query, { signal }),
+    enabled: query !== "",
+    initialData: [],
+  });
 
   return (
     <VStack>

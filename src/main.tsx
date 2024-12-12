@@ -12,11 +12,19 @@ window.ReactDOM = ReactDOM;
 import "./index.css";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import "primeicons/primeicons.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+// Create a client
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode> {/* Strict useEffect! */}
+  <StrictMode>
+    {" "}
+    {/* Strict useEffect! */}
     <PrimeReactProvider>
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
     </PrimeReactProvider>
   </StrictMode>
 );
