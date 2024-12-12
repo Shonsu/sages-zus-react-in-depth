@@ -17,6 +17,12 @@
   @tailwind utilities;
 }
 
-input,textarea,select{
+input,
+textarea,
+select {
   border: 1px solid gray;
+}
+
+.active {
+  @apply  text-gray-800;
 }
