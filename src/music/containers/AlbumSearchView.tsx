@@ -38,8 +38,14 @@ const AlbumSearchView = (props: Props) => {
           <SearchForm onSearch={setQuery} />
         </div>
         <div>
-          {isLoading && <ProgressSpinner className="mx-auto my-10" />}
-          {error instanceof Error && <p>{error.message}</p>}
+          {isLoading && (
+            <ProgressSpinner className="flex justify-center my-10" />
+          )}
+          {error instanceof Error && (
+            <p className="p-5 text-red-500 border border-solid border-red-500">
+              {error.message}
+            </p>
+          )}
 
           <ResultsGrid results={data} />
         </div>
