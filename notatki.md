@@ -7,6 +7,7 @@ npm -v
 
 git -v 
 git version 2.40.1.windows.1
+Google: git for windows
 
 visual studio code 
 1.93.1
@@ -16,6 +17,16 @@ git clone https://bitbucket.org/ev45ive/sages-zus-react-in-depth.git
 
 F1 -> Clone => PASTE ^ => Clone from URL -> Select location -> Open
 
+git config --global http.proxy http://fpx.zus.ad:8080/
+
+# Proxy NPM 
+Utworz - C:/twoj uzytkownik/.npmrc 
+
+proxy=http://fpx.zus.ad:8080/
+http-proxy=http://fpx.zus.ad:8080/
+https-proxy=http://fpx.zus.ad:8080/
+registry=https://registry.npmjs.org/
+strict-ssl=false
 
 # FUnctional 
 https://learnyouahaskell.github.io/chapters.html
