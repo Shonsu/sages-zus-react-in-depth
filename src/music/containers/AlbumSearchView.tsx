@@ -7,15 +7,13 @@ import { ErrorMessage } from "../../common/components/ErrorMessage";
 import { VStack } from "../../common/components/Stack";
 import { fetchAlbumSearchResults } from "../../common/services/MusicAPI";
 import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "react-router";
 
 const AlbumSearchView = () => {
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState(params.get('q'));
 
-  // const {
-  //   data: results = [],
-  //   isLoading,
-  //   error,
-  // } = useFetch(query, fetchAlbumSearchResults);
+  const [params, updateParams] = useSearchParams({ q: "" });
+  const query = params.get("q") || "";
 
   const {
     data: results,
@@ -31,7 +29,9 @@ const AlbumSearchView = () => {
 
   return (
     <VStack>
-      <SearchForm onSearch={setQuery} />
+      <SearchForm 
+        query={query} 
+        onSearch={(q) => updateParams({ q })} />
 
       <VStack gap="sm">
         <BigSpinner show={isLoading} />

@@ -1,16 +1,23 @@
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import React, { FormEvent, useEffect, useState } from "react";
-
 import { useDebounce } from "@uidotdev/usehooks";
-type Props = { onSearch: (query: string) => void };
 
-const SearchForm = ({ onSearch }: Props) => {
-  const [draft, setDraft] = useState("");
+type Props = {
+  query: string;
+  onSearch: (query: string) => void;
+};
+
+const SearchForm = ({ query, onSearch }: Props) => {
+  const [draft, setDraft] = useState(query);
+
+  useEffect(() => setDraft(query), [query]);
 
   const searchQuery = useDebounce(draft, 300);
 
-  useEffect(() => onSearch(draft), [searchQuery]);
+  useEffect(() => {
+    if (query !== searchQuery) onSearch(searchQuery);
+  }, [searchQuery]);
 
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

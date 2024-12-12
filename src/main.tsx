@@ -37,6 +37,7 @@ import {
 import AlbumSearchView from "./music/containers/AlbumSearchView.tsx";
 import PlaylistsView from "./playlists/components/PlaylistsView.tsx";
 import AlbumDetailView from "./music/containers/AlbumDetailView.tsx";
+import { checkLogin } from "./common/services/Auth.ts";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,13 @@ const router = createBrowserRouter([
       {
         path: "playlists",
         element: <PlaylistsView />,
+      },
+      {
+        path: "callback",
+        loader: () => {
+          checkLogin();
+          return redirect("/music/search");
+        },
       },
     ],
     // ErrorBoundary : <errorboundary/>,
