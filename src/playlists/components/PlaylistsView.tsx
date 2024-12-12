@@ -28,13 +28,12 @@ const PlaylistsView = (props: Props) => {
     fetch("playlists.json", { signal: huston.signal })
       .then((r) => r.json())
       .then((data: Playlist[]) => {
-        // console.log("data", data);
         setPlaylists(data);
         setSelected(data.find((p) => p.id === selectedId));
       });
 
     return () => {
-      huston.abort('Bo tak');
+      huston.abort("Bo tak");
     };
   }, []);
 
@@ -66,6 +65,9 @@ const PlaylistsView = (props: Props) => {
     setSelectedId("");
   };
 
+  // useEffect after render
+
+  // render
   return (
     <div>
       <div className="grid grid-cols-2 gap-5 my-5">

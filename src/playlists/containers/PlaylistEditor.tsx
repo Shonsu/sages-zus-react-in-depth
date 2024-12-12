@@ -1,12 +1,7 @@
-import React, {
-  useEffect,
-  useId,
-  useRef,
-  useState,
-  type ChangeEvent,
-} from "react";
+import React, { useEffect, useId, useState, type ChangeEvent } from "react";
 import AppButton from "../../common/components/AppButton";
 import type { Playlist } from "./Playlist";
+import { useFocus } from "../../common/hooks/useFocus";
 
 type Props = {
   playlist?: Playlist;
@@ -39,21 +34,18 @@ const PlaylistEditor = ({
     onSave(playlist);
   };
 
-  const nameRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    nameRef.current?.focus();
-  }, []);
+  const { ref: nameRef, focus } = useFocus();
 
   return (
     <div>
-      <pre>{JSON.stringify(playlistFromParent, null, 2)}</pre>
-      <pre>{JSON.stringify(playlist, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(playlistFromParent, null, 2)}</pre>
+      <pre>{JSON.stringify(playlist, null, 2)}</pre> */}
+
       <div className="grid gap-5">
         <div className="grid gap-2">
           <label>Name</label>
           <input
-            ref={nameRef}
+            ref={nameRef} // render DOM
             type="text"
             value={playlist.name}
             onChange={nameChange}
