@@ -41,7 +41,7 @@ const router = createBrowserRouter([
       {
         index: true,
         // element: <div>HEllo!</div>,
-        loader: () => redirect("/search"),
+        loader: () => redirect("/music/search"),
       },
       {
         path: "music",
@@ -59,6 +59,16 @@ const router = createBrowserRouter([
       {
         path: "playlists",
         element: <PlaylistsView />,
+      },
+      {
+        path: "*",
+        element: (
+          <div className="text-center">
+            <h1 className=" text-6xl">404</h1>
+            <p>Page not found</p>
+            <a href="/">go to Home</a>
+          </div>
+        ),
       },
     ],
   },
