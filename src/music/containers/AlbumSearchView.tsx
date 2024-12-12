@@ -10,8 +10,6 @@ import { fetchAlbumSearchResults } from "../../common/services/MusicAPI";
 const AlbumSearchView = () => {
   const [query, setQuery] = useState("");
 
-  // const { data: results = [], isLoading, error } = useFetchAlbums(query);
-
   const {
     data: results = [],
     isLoading,
